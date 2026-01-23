@@ -1,0 +1,18 @@
+.bottom-actions {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.bottom-actions button {
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  background: #e5e7eb;
+}
+
+.bottom-actions .primary {
+  background: #135bec;
+  color: white;
+}

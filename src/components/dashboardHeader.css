@@ -1,0 +1,23 @@
+.dashboard-header {
+  height: 60px;
+  background: #020617;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.tabs a {
+  margin-right: 20px;
+  color: #94a3b8;
+  text-decoration: none;
+}
+
+.tabs a.active {
+  color: #3b82f6;
+  border-bottom: 2px solid #3b82f6;
+}
+
+.ai-status {
+  margin-right: 20px;
+}

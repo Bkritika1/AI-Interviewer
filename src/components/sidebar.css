@@ -1,0 +1,60 @@
+.sidebar {
+  width: 220px;
+  background: #020617;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar a {
+  display: block;
+  margin: 12px 0;
+  color: #94a3b8;
+  text-decoration: none;
+}
+
+.sidebar a.active {
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+.sidebar {
+  width: 260px;
+  background: #0f172a;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 12px;
+  color: gray;
+  margin: 20px 0 10px;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px;
+  color: #cbd5f5;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.nav-link.active {
+  background: #1e40af;
+  color: white;
+}
+
+.upgrade-box {
+  margin-top: 30px;
+  padding: 15px;
+  background: #020617;
+  border-radius: 10px;
+}
+
+.upgrade-box button {
+  margin-top: 10px;
+  width: 100%;
+}

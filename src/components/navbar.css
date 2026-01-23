@@ -1,0 +1,52 @@
+.navbar {
+  height: 72px;
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f6f6f8;
+}
+
+.dark .navbar {
+  background: #101622;
+  border-color: #282e39;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  color: #135bec;
+}
+
+.logo-icon svg {
+  fill: currentColor;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #e5e7eb;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBohZZ0lPEUG7B9Djg9C2FnfLatU1qLWpCGn9CFWoT0HVtqLIZLebZk0bT-KLDb4PUTgAD1F37X9S6N6LOBYczdZEkAB-iqsOtmkzYz3Jpc-5c4rxVdwR8t4fqW1o_oEcvClArnWDWBSN-N-ErPO3_Vti65AvT-CWGNx42i9rvD8esDB93tFBepu7fHMZ9XbPPcZp1uA7D6rNyRT7r3mW0LlhuJOC5Cjdx6x2dGHf9nLX-g-jUD-CiT6PrUBsL7YM4l8y9W5057oPA")
+    center/cover no-repeat;
+  border: 2px solid rgba(19, 91, 236, 0.2);
+}

@@ -1,0 +1,25 @@
+.mode-page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.mode-page h1 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 10px;
+  color: #64748b;
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.mode-grid {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
