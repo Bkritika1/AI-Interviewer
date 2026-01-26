@@ -126,9 +126,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/modes" element={<ModeSelection />} />
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route path="practice" element={<Practice />} />
-        </Route>
+      <Route path="/dashboard" element={<DashboardLayout />}>
+  <Route path="practice" element={<Practice />} />
+  <Route path="practice/:section" element={<Practice />} />
+  <Route path="practice/:section/:topicId" element={<Practice />} />
+  <Route
+    path="practice/:section/:topicId/:questionId"
+    element={<Practice />}
+  />
+</Route>
+
       </Routes>
     </BrowserRouter>
   );

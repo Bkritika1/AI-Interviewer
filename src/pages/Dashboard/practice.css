@@ -1,0 +1,116 @@
+.practice-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1.6fr 0.9fr;
+  height: 100vh;
+  background: #0b0f14;
+  color: #e5e7eb;
+}
+
+/* COMMON PANEL */
+.panel {
+  border-right: 1px solid #1f2937;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+/* DESCRIPTION */
+.description-panel {
+  background: #0b0f14;
+}
+
+.question-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.difficulty {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.difficulty.Medium {
+  background: #78350f;
+  color: #facc15;
+}
+
+.description-box {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cbd5f5;
+}
+
+/* EDITOR */
+.editor-panel {
+  background: #0f172a;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-header {
+  font-size: 13px;
+  color: #38bdf8;
+  margin-bottom: 8px;
+}
+
+.code-editor {
+  flex: 1;
+  background: #020617;
+  color: #e5e7eb;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: "Fira Code", monospace;
+  font-size: 13px;
+  resize: none;
+}
+
+.editor-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.run-btn {
+  background: #1e40af;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+.submit-btn {
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+/* TEST CASES */
+.testcase-panel {
+  background: #020617;
+}
+
+.testcase {
+  display: flex;
+  justify-content: space-between;
+  background: #0f172a;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.status.pending {
+  color: #94a3b8;
+}
+
+.status.pass {
+  color: #22c55e;
+}
+
+.status.fail {
+  color: #ef4444;
+}
