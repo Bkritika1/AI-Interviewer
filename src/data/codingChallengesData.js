@@ -420,6 +420,139 @@
 // };
 
 
+// export const codingChallenges = {
+//   javascript_basics: {
+//     id: "javascript_basics",
+//     title: "JavaScript Basics",
+//     order: 1,
+
+//     questions: [
+//       {
+//         id: "add-two-numbers",
+//         slug: "add-two-numbers",
+//         title: "Add Two Numbers",
+//         difficulty: "Easy",
+
+//         functionName: "add",
+//         returnType: "number",
+
+//         description:
+//           "Write a function that takes two numbers and returns their sum.",
+
+//         examples: [
+//           {
+//             input: "add(2, 3)",
+//             output: 5
+//           }
+//         ],
+
+//         constraints: [
+//           "-100 ≤ a, b ≤ 100"
+//         ],
+
+//         starterCode: `function add(a, b) {
+//   // write your code here
+// }`,
+
+//         testCases: [
+//           { args: [2, 3], expected: 5 },
+//           { args: [10, 20], expected: 30 }
+//         ]
+//       }
+//     ]
+//   },
+
+//   closures: {
+//     id: "closures",
+//     title: "Closures",
+//     order: 2,
+
+//     questions: [
+//       {
+//         id: "counter-closure",
+//         slug: "counter-closure",
+//         title: "Counter using Closure",
+//         difficulty: "Medium",
+
+//         functionName: "createCounter",
+//         returnType: "function",
+
+//         description:
+//           "Create a counter using closure. Each call should increment the count.",
+
+//         examples: [
+//           {
+//             input: "counter(); counter();",
+//             output: 2
+//           }
+//         ],
+
+//         constraints: [
+//           "Counter should retain value between calls"
+//         ],
+
+//         starterCode: `function createCounter() {
+//   // write your code here
+// }`,
+
+//         testCases: [
+//           {
+//             type: "function-call",
+//             calls: 2,
+//             expected: 2
+//           }
+//         ]
+//       }
+//     ]
+//   },
+
+//   arrays: {
+//     id: "arrays",
+//     title: "Arrays",
+//     order: 3,
+
+//     questions: [
+//       {
+//         id: "two-sum",
+//         slug: "two-sum",
+//         title: "Two Sum",
+//         difficulty: "Easy",
+
+//         functionName: "twoSum",
+//         returnType: "array",
+
+//         description:
+//           "Return indices of the two numbers such that they add up to target.",
+
+//         examples: [
+//           {
+//             input: "twoSum([2,7,11,15], 9)",
+//             output: "[0,1]"
+//           }
+//         ],
+
+//         constraints: [
+//           "2 ≤ nums.length ≤ 10⁴",
+//           "Only one valid answer exists"
+//         ],
+
+//         starterCode: `function twoSum(nums, target) {
+//   // write your code here
+// }`,
+
+//         testCases: [
+//           {
+//             args: [[2, 7, 11, 15], 9],
+//             expected: [0, 1]
+//           }
+//         ]
+//       }
+//     ]
+//   }
+// };
+
+
+
 export const codingChallenges = {
   javascript_basics: {
     id: "javascript_basics",
@@ -450,10 +583,25 @@ export const codingChallenges = {
           "-100 ≤ a, b ≤ 100"
         ],
 
-        starterCode: `function add(a, b) {
+        // 👇 LANGUAGE AWARE STARTER CODE
+        starterCode: {
+          javascript: `function add(a, b) {
   // write your code here
 }`,
 
+          python: `def add(a, b):
+    # write your code here
+    pass`,
+
+          java: `class Solution {
+    public static int add(int a, int b) {
+        // write your code here
+        return 0;
+    }
+}`
+        },
+
+        // 👇 STANDARDIZED TEST CASES
         testCases: [
           { args: [2, 3], expected: 5 },
           { args: [10, 20], expected: 30 }
@@ -475,7 +623,7 @@ export const codingChallenges = {
         difficulty: "Medium",
 
         functionName: "createCounter",
-        returnType: "function",
+        returnType: "number",
 
         description:
           "Create a counter using closure. Each call should increment the count.",
@@ -491,13 +639,28 @@ export const codingChallenges = {
           "Counter should retain value between calls"
         ],
 
-        starterCode: `function createCounter() {
-  // write your code here
+        starterCode: {
+          javascript: `function createCounter() {
+  let count = 0;
+  return function () {
+    count++;
+    return count;
+  }
 }`,
 
+          python: `def createCounter():
+    count = 0
+    def counter():
+        nonlocal count
+        count += 1
+        return count
+    return counter`
+        },
+
+        // 👇 Closure-friendly test case
         testCases: [
           {
-            type: "function-call",
+            type: "closure",
             calls: 2,
             expected: 2
           }
@@ -536,9 +699,15 @@ export const codingChallenges = {
           "Only one valid answer exists"
         ],
 
-        starterCode: `function twoSum(nums, target) {
+        starterCode: {
+          javascript: `function twoSum(nums, target) {
   // write your code here
 }`,
+
+          python: `def twoSum(nums, target):
+    # write your code here
+    pass`
+        },
 
         testCases: [
           {
