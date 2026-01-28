@@ -987,6 +987,7 @@ const Practice = () => {
             <span className={`status ${t.status}`}>
               {t.status.toUpperCase()}
             </span>
+            <h1>hey</h1>
           </div>
         ))}
       </section>

@@ -711,7 +711,10 @@ export const codingChallenges = {
 
         testCases: [
           {
-            args: [[2, 7, 11, 15], 9],
+            args: [[2, 7, 11, 15,16
+
+              
+            ], 9],
             expected: [0, 1]
           }
         ]
