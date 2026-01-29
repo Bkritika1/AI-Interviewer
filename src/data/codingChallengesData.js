@@ -720,5 +720,88 @@ export const codingChallenges = {
         ]
       }
     ]
+  },
+
+
+  phase1_debugging: {
+    id: "phase1_debugging",
+    title: "Phase 1 Debugging",
+    order: 99,
+
+    questions: [
+
+      {
+        id: "fix-loop-sum",
+        slug: "fix-loop-sum",
+        title: "Fix Loop Sum",
+        difficulty: "Easy",
+
+        functionName: "sumArray",
+        validationType: "phase1",
+
+        description:
+          "Fix the function so it correctly sums all array numbers.",
+
+        starterCode: {
+          javascript: `function sumArray(arr){
+  let sum = 0;
+
+  for(let i = 0; i <= arr.length; i++){
+    sum = arr[i];
   }
-};
+}`
+        },
+
+        testCases: [
+          { args: [[1,2,3]], expected: 6 },
+          { args: [[5,5]], expected: 10 }
+        ],
+
+        targetFixLines: [
+          "i < arr.length",
+          "sum += arr[i]",
+          "return sum"
+        ]
+      },
+
+
+      {
+        id: "fix-even-checker",
+        slug: "fix-even-checker",
+        title: "Fix Even Checker",
+        difficulty: "Medium",
+
+        functionName: "isEven",
+        validationType: "phase1",
+
+        description:
+          "Fix the function so it correctly checks if number is even.",
+
+        starterCode: {
+          javascript: `function isEven(num){
+  if(num % 2 = 0){
+    return false;
+  } else {
+    return true;
+  }
+}`
+        },
+
+        testCases: [
+          { args: [2], expected: true },
+          { args: [5], expected: false }
+        ],
+
+        targetFixLines: [
+          "num % 2 === 0",
+          "return true",
+          "return false"
+        ]
+      }
+
+    ]
+  }
+
+}
+
+
