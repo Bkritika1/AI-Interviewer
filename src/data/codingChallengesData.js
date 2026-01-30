@@ -763,6 +763,353 @@ export const codingChallenges = {
           "return sum"
         ]
       },
+{
+  id: "fix-loop-multiply",
+  slug: "fix-loop-multiply",
+  title: "Fix Loop Multiply",
+  difficulty: "Easy",
+
+  functionName: "multiplyArray",
+  validationType: "phase1",
+
+  description:
+    "Fix the function so it multiplies all array numbers.",
+
+  starterCode: {
+    javascript: `function multiplyArray(arr){
+  let result = 1;
+
+  for(let i = 0; i <= arr.length; i++){
+    result = arr[i];
+  }
+}`
+  },
+
+  testCases: [
+    { args: [[2,3,4]], expected: 24 },
+    { args: [[5,2]], expected: 10 }
+  ],
+
+  targetFixLines: [
+    "i < arr.length",
+    "result *= arr[i]",
+    "return result"
+  ]
+},
+
+{
+  id: "fix-remove-duplicates",
+  slug: "fix-remove-duplicates",
+  title: "Fix Remove Duplicates",
+  difficulty: "Medium",
+
+  functionName: "removeDuplicates",
+  validationType: "phase1",
+
+  description:
+    "Fix function to remove duplicate values from array.",
+
+  starterCode: {
+    javascript: `function removeDuplicates(arr){
+  let result = [];
+
+  for(let i=0;i<=arr.length;i++){
+    if(!result.includes(arr[i])){
+      result = arr[i];
+    }
+  }
+}`
+  },
+
+  testCases: [
+    { args: [[1,2,2,3]], expected: [1,2,3] },
+    { args: [[4,4,5]], expected: [4,5] }
+  ],
+
+  targetFixLines: [
+    "i < arr.length",
+    "result.push(arr[i])",
+    "return result"
+  ]
+},
+
+{
+  id: "fix-palindrome",
+  slug: "fix-palindrome",
+  title: "Fix Palindrome Check",
+  difficulty: "Medium",
+
+  functionName: "isPalindrome",
+  validationType: "phase1",
+
+  description:
+    "Fix function to check if string is palindrome.",
+
+  starterCode: {
+    javascript: `function isPalindrome(str){
+  let rev = str.split("").reverse().join("");
+  if(str = rev){
+    return true;
+  }else{
+    return false;
+  }
+}`
+  },
+
+  testCases: [
+    { args: ["madam"], expected: true },
+    { args: ["hello"], expected: false }
+  ],
+
+  targetFixLines: [
+    "str === rev",
+    "return true",
+    "return false"
+  ]
+},
+
+{
+  id: "fix-two-pointer-sum",
+  slug: "fix-two-pointer-sum",
+  title: "Fix Two Pointer Sum",
+  difficulty: "Medium",
+
+  functionName: "pairSum",
+  validationType: "phase1",
+
+  description:
+    "Fix function to check if any pair equals target.",
+
+  starterCode: {
+    javascript: `function pairSum(arr,target){
+  for(let i=0;i<arr.length;i++){
+    for(let j=i+1;j<=arr.length;j++){
+      if(arr[i]+arr[j] = target){
+        return true;
+      }
+    }
+  }
+}`
+  },
+
+  testCases: [
+    { args: [[1,2,3,4],5], expected: true },
+    { args: [[1,2,3],10], expected: false }
+  ],
+
+  targetFixLines: [
+    "j < arr.length",
+    "===",
+    "return false"
+  ]
+},
+
+{
+  id: "fix-map-square",
+  slug: "fix-map-square",
+  title: "Fix Map Square",
+  difficulty: "Easy",
+
+  functionName: "squareArray",
+  validationType: "phase1",
+
+  description:
+    "Fix function to return square of each element.",
+
+  starterCode: {
+    javascript: `function squareArray(arr){
+  return arr.map(num=>{
+    num*num;
+  });
+}`
+  },
+
+  testCases: [
+    { args: [[2,3]], expected: [4,9] }
+  ],
+
+  targetFixLines: [
+    "return num*num"
+  ]
+},
+
+{
+  id: "fix-closure-reset",
+  slug: "fix-closure-reset",
+  title: "Fix Closure Counter Reset",
+  difficulty: "Medium",
+
+  functionName: "createCounter",
+  validationType: "phase1",
+
+  description:
+    "Fix closure so counter does not reset.",
+
+  starterCode: {
+    javascript: `function createCounter(){
+  return function(){
+    let count = 0;
+    count++;
+    return count;
+  }
+}`
+  },
+
+  testCases: [
+    { args: [], expected: 1 }
+  ],
+
+  targetFixLines: [
+    "let count = 0",
+    "return function"
+  ]
+},
+
+{
+  id: "fix-tdz-error",
+  slug: "fix-tdz-error",
+  title: "Fix TDZ Error",
+  difficulty: "Medium",
+
+  functionName: "getData",
+  validationType: "phase1",
+
+  description:
+    "Fix Temporal Dead Zone error.",
+
+  starterCode: {
+    javascript: `function getData(){
+  console.log(data);
+  let data = 10;
+}`
+  },
+
+  testCases: [
+    { args: [], expected: 10 }
+  ],
+
+  targetFixLines: [
+    "let data = 10",
+    "return data"
+  ]
+},
+
+
+{
+  id: "fix-promise-return",
+  slug: "fix-promise-return",
+  title: "Fix Promise Return",
+  difficulty: "Medium",
+
+  functionName: "getNumber",
+  validationType: "phase1",
+
+  description:
+    "Fix promise to return correct resolved value.",
+
+  starterCode: {
+    javascript: `function getNumber(){
+  new Promise(resolve=>{
+    resolve(5);
+  });
+}`
+  },
+
+  testCases: [
+    { args: [], expected: 5 }
+  ],
+
+  targetFixLines: [
+    "return new Promise"
+  ]
+},
+
+{
+  id: "fix-reduce-sum",
+  slug: "fix-reduce-sum",
+  title: "Fix Reduce Sum",
+  difficulty: "Easy",
+
+  functionName: "sumReduce",
+  validationType: "phase1",
+
+  description:
+    "Fix reduce to sum array.",
+
+  starterCode: {
+    javascript: `function sumReduce(arr){
+  return arr.reduce((acc,curr)=>{
+    acc+curr;
+  },0);
+}`
+  },
+
+  testCases: [
+    { args: [[1,2,3]], expected: 6 }
+  ],
+
+  targetFixLines: [
+    "return acc+curr"
+  ]
+},
+
+{
+  id: "fix-object-access",
+  slug: "fix-object-access",
+  title: "Fix Object Access",
+  difficulty: "Easy",
+
+  functionName: "getName",
+  validationType: "phase1",
+
+  description:
+    "Fix object property access.",
+
+  starterCode: {
+    javascript: `function getName(obj){
+  return obj.namee;
+}`
+  },
+
+  testCases: [
+    { args: [{name:"Rahul"}], expected: "Rahul" }
+  ],
+
+  targetFixLines: [
+    "obj.name"
+  ]
+},
+
+{
+  id: "fix-filter-return",
+  slug: "fix-filter-return",
+  title: "Fix Filter Return",
+  difficulty: "Easy",
+
+  functionName: "filterPositive",
+  validationType: "phase1",
+
+  description:
+    "Fix filter logic to return positives.",
+
+  starterCode: {
+    javascript: `function filterPositive(arr){
+  return arr.filter(num=>{
+    num>0;
+  });
+}`
+  },
+
+  testCases: [
+    { args: [[-1,2,3]], expected: [2,3] }
+  ],
+
+  targetFixLines: [
+    "return num>0"
+  ]
+},
+
+
 
 
       {
