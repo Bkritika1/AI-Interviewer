@@ -1031,6 +1031,7 @@ const Practice = () => {
   const [code, setCode] = useState("");
   const [testResults, setTestResults] = useState([]);
   const [language, setLanguage] = useState("javascript");
+  const [showHints, setShowHints] = useState(false);
 
   useEffect(() => {
     if (activeQuestion) {
@@ -1193,6 +1194,27 @@ const Practice = () => {
               <span className="status pending">PENDING</span>
             </div>
           ))}
+         {Array.isArray(activeQuestion.hints) && activeQuestion.hints.length > 0 && (
+  <div className="hint-box">
+    <button
+      className="hint-btn"
+      onClick={() => setShowHints(!showHints)}
+    >
+      💡 {showHints ? "Hide Hints" : "Show Hints"}
+    </button>
+
+    {showHints && (
+      <ul className="hint-list">
+        {activeQuestion.hints.map((hint, index) => (
+          <li key={index}>
+            Hint {index + 1}: {hint}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+)}
+
 
         {testResults.map((t) => (
           <div key={t.id} className={`test ${t.status}`}>
@@ -1211,6 +1233,7 @@ const Practice = () => {
             </span>
           </div>
         ))}
+        
       </section>
     </div>
   );

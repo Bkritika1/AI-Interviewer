@@ -731,38 +731,45 @@ export const codingChallenges = {
     questions: [
 
       {
-        id: "fix-loop-sum",
-        slug: "fix-loop-sum",
-        title: "Fix Loop Sum",
-        difficulty: "Easy",
+  id: "fix-loop-sum",
+  slug: "fix-loop-sum",
+  title: "Fix Loop Sum",
+  difficulty: "Easy",
 
-        functionName: "sumArray",
-        validationType: "phase1",
+  functionName: "sumArray",
+  validationType: "phase1",
 
-        description:
-          "Fix the function so it correctly sums all array numbers.",
+  description:
+    "Fix the function so it correctly sums all array numbers.",
 
-        starterCode: {
-          javascript: `function sumArray(arr){
+  hints: [
+    "Check the loop condition carefully.",
+    "Are you accumulating the sum or replacing it?",
+    "What should the function return at the end?"
+  ],
+
+  starterCode: {
+    javascript: `function sumArray(arr){
   let sum = 0;
 
   for(let i = 0; i <= arr.length; i++){
     sum = arr[i];
   }
 }`
-        },
+  },
 
-        testCases: [
-          { args: [[1,2,3]], expected: 6 },
-          { args: [[5,5]], expected: 10 }
-        ],
+  testCases: [
+    { args: [[1,2,3]], expected: 6 },
+    { args: [[5,5]], expected: 10 }
+  ],
 
-        targetFixLines: [
-          "i < arr.length",
-          "sum += arr[i]",
-          "return sum"
-        ]
-      },
+  targetFixLines: [
+    "i < arr.length",
+    "sum += arr[i]",
+    "return sum"
+  ]
+}
+,
 {
   id: "fix-loop-multiply",
   slug: "fix-loop-multiply",
