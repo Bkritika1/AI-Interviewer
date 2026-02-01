@@ -796,6 +796,11 @@ export const codingChallenges = {
     { args: [[2,3,4]], expected: 24 },
     { args: [[5,2]], expected: 10 }
   ],
+    hints: [
+    "Check the loop condition carefully.",
+    "Are you accumulating the sum or replacing it?",
+    "What should the function return at the end?"
+  ],
 
   targetFixLines: [
     "i < arr.length",
