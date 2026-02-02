@@ -669,59 +669,275 @@ export const codingChallenges = {
     ]
   },
 
-  arrays: {
-    id: "arrays",
-    title: "Arrays",
-    order: 3,
+//   arrays: {
+//     id: "arrays",
+//     title: "Arrays",
+//     order: 3,
 
-    questions: [
-      {
-        id: "two-sum",
-        slug: "two-sum",
-        title: "Two Sum",
-        difficulty: "Easy",
+//     questions: [
+//       {
+//         id: "two-sum",
+//         slug: "two-sum",
+//         title: "Two Sum",
+//         difficulty: "Easy",
 
-        functionName: "twoSum",
-        returnType: "array",
+//         functionName: "twoSum",
+//         returnType: "array",
 
-        description:
-          "Return indices of the two numbers such that they add up to target.",
+//         description:
+//           "Return indices of the two numbers such that they add up to target.",
 
-        examples: [
-          {
-            input: "twoSum([2,7,11,15], 9)",
-            output: "[0,1]"
-          }
-        ],
+//         examples: [
+//           {
+//             input: "twoSum([2,7,11,15], 9)",
+//             output: "[0,1]"
+//           }
+//         ],
 
-        constraints: [
-          "2 ≤ nums.length ≤ 10⁴",
-          "Only one valid answer exists"
-        ],
+//         constraints: [
+//           "2 ≤ nums.length ≤ 10⁴",
+//           "Only one valid answer exists"
+//         ],
 
-        starterCode: {
-          javascript: `function twoSum(nums, target) {
-  // write your code here
-}`,
+//         starterCode: {
+//           javascript: `function twoSum(nums, target) {
+//   // write your code here
+// }`,
 
-          python: `def twoSum(nums, target):
-    # write your code here
-    pass`
-        },
+//           python: `def twoSum(nums, target):
+//     # write your code here
+//     pass`
+//         },
 
-        testCases: [
-          {
-            args: [[2, 7, 11, 15,16
+//         testCases: [
+//           {
+//             args: [[2, 7, 11, 15,16
 
               
-            ], 9],
-            expected: [0, 1]
-          }
-        ]
-      }
-    ]
-  },
+//             ], 9],
+//             expected: [0, 1]
+//           }
+//         ]
+//       }
+//     ]
+//   },
 
+
+arrays: {
+  id: "arrays",
+  title: "Arrays",
+  type: "course",
+  order: 3,
+
+  levels: [
+    // 👇 Level 1
+    {
+      level: 1,
+      title: "Create an Array",
+
+      questions: [
+        {
+          id: "create-array",
+          title: "Create an Array",
+          difficulty: "Easy",
+
+          functionName: "createArray",
+
+          description:
+            "Create an array containing numbers 1, 2, 3 and return it.",
+
+          starterCode: {
+            javascript: `function createArray() {
+  // create and return array
+}`
+          },
+
+          testCases: [
+            { args: [], expected: [1, 2, 3] }
+          ],
+
+          hints: [
+            "Arrays are written using []",
+            "Return the array"
+          ]
+        }
+      ]
+    },
+
+    // 👇 Level 2
+    {
+      level: 2,
+      title: "Access Array Elements",
+
+      questions: [
+        {
+          id: "get-first-element",
+          title: "Get First Element",
+          difficulty: "Easy",
+
+          functionName: "getFirst",
+
+          description:
+            "Return the first element of the array.",
+
+          starterCode: {
+            javascript: `function getFirst(arr) {
+  // return first element
+}`
+          },
+
+          testCases: [
+            { args: [[10, 20, 30]], expected: 10 }
+          ],
+
+          hints: [
+            "Indexing starts from 0",
+            "Use arr[0]"
+          ]
+        }
+      ]
+    },
+
+    // 👇 Level 3
+    {
+      level: 3,
+      title: "Modify Array",
+
+      questions: [
+        {
+          id: "add-element",
+          title: "Add Element to Array",
+          difficulty: "Easy",
+
+          functionName: "addElement",
+
+          description:
+            "Add number 5 at the end of array and return it.",
+
+          starterCode: {
+            javascript: `function addElement(arr) {
+  // add 5 to array
+}`
+          },
+
+          testCases: [
+            { args: [[1, 2]], expected: [1, 2, 5] }
+          ],
+
+          hints: [
+            "Use push method",
+            "Return the array"
+          ]
+        }
+      ]
+    },
+
+    // 👇 Level 4
+    {
+      level: 4,
+      title: "Array Methods",
+
+      questions: [
+        {
+          id: "double-array",
+          title: "Double All Elements",
+          difficulty: "Medium",
+
+          functionName: "doubleArray",
+
+          description:
+            "Return a new array where each number is doubled.",
+
+          starterCode: {
+            javascript: `function doubleArray(arr) {
+  // use map
+}`
+          },
+
+          testCases: [
+            { args: [[1, 2, 3]], expected: [2, 4, 6] }
+          ],
+
+          hints: [
+            "map returns a new array",
+            "Multiply each element by 2"
+          ]
+        }
+      ]
+    },
+
+    // 👇 Level 5
+    {
+      level: 5,
+      title: "Looping Arrays",
+
+      questions: [
+        {
+          id: "sum-array",
+          title: "Sum of Array",
+          difficulty: "Medium",
+
+          functionName: "sumArray",
+
+          description:
+            "Return sum of all numbers in array.",
+
+          starterCode: {
+            javascript: `function sumArray(arr) {
+  // loop through array
+}`
+          },
+
+          testCases: [
+            { args: [[1, 2, 3]], expected: 6 }
+          ],
+
+          hints: [
+            "Use for loop",
+            "Initialize sum = 0"
+          ]
+        }
+      ]
+    },
+
+    // 👇 Level 6 (REAL PROBLEM)
+    {
+      level: 6,
+      title: "Real Problem",
+
+      questions: [
+        {
+          id: "two-sum",
+          title: "Two Sum",
+          difficulty: "Medium",
+
+          functionName: "twoSum",
+
+          description:
+            "Return indices of two numbers that add up to target.",
+
+          starterCode: {
+            javascript: `function twoSum(nums, target) {
+  // solve using loop
+}`
+          },
+
+          testCases: [
+            {
+              args: [[2, 7, 11, 15], 9],
+              expected: [0, 1]
+            }
+          ],
+
+          hints: [
+            "Use two loops",
+            "Return indices"
+          ]
+        }
+      ]
+    }
+  ]
+},
 
   phase1_debugging: {
     id: "phase1_debugging",
