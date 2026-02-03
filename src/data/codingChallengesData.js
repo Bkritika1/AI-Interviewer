@@ -726,218 +726,175 @@ export const codingChallenges = {
 arrays: {
   id: "arrays",
   title: "Arrays",
-  type: "course",
   order: 3,
 
-  levels: [
-    // 👇 Level 1
+  questions: [
+
+    // 🟢 STEP 1 — Create Array
     {
-      level: 1,
+      id: "create-array",
+      slug: "create-array",
       title: "Create an Array",
+      difficulty: "Easy",
 
-      questions: [
-        {
-          id: "create-array",
-          title: "Create an Array",
-          difficulty: "Easy",
+      step: 1,
+      concept: "array-basics",
+      learningGoal: "Understand how to create an array",
 
-          functionName: "createArray",
+      functionName: "createArray",
 
-          description:
-            "Create an array containing numbers 1, 2, 3 and return it.",
+      description:
+        "Create an array with numbers 1, 2, 3 and return it.",
 
-          starterCode: {
-            javascript: `function createArray() {
+      starterCode: {
+        javascript: `function createArray() {
   // create and return array
 }`
-          },
+      },
 
-          testCases: [
-            { args: [], expected: [1, 2, 3] }
-          ],
+      testCases: [
+        { args: [], expected: [1, 2, 3] }
+      ],
 
-          hints: [
-            "Arrays are written using []",
-            "Return the array"
-          ]
-        }
+      hints: [
+        "Arrays use square brackets []",
+        "Return the array"
       ]
     },
 
-    // 👇 Level 2
+    // 🟢 STEP 2 — Access Element
     {
-      level: 2,
-      title: "Access Array Elements",
+      id: "get-first-element",
+      slug: "get-first-element",
+      title: "Access First Element",
+      difficulty: "Easy",
 
-      questions: [
-        {
-          id: "get-first-element",
-          title: "Get First Element",
-          difficulty: "Easy",
+      step: 2,
+      concept: "array-indexing",
+      unlockAfter: "create-array",
 
-          functionName: "getFirst",
+      functionName: "getFirst",
 
-          description:
-            "Return the first element of the array.",
+      description:
+        "Return the first element of the array.",
 
-          starterCode: {
-            javascript: `function getFirst(arr) {
+      starterCode: {
+        javascript: `function getFirst(arr) {
   // return first element
 }`
-          },
+      },
 
-          testCases: [
-            { args: [[10, 20, 30]], expected: 10 }
-          ],
+      testCases: [
+        { args: [[10, 20, 30]], expected: 10 }
+      ],
 
-          hints: [
-            "Indexing starts from 0",
-            "Use arr[0]"
-          ]
-        }
+      hints: [
+        "Indexing starts from 0",
+        "Use arr[0]"
       ]
     },
 
-    // 👇 Level 3
+    // 🟡 STEP 3 — Push Method
     {
-      level: 3,
-      title: "Modify Array",
+      id: "array-push",
+      slug: "array-push",
+      title: "Add Element to Array",
+      difficulty: "Easy",
 
-      questions: [
-        {
-          id: "add-element",
-          title: "Add Element to Array",
-          difficulty: "Easy",
+      step: 3,
+      concept: "array-methods",
+      unlockAfter: "get-first-element",
 
-          functionName: "addElement",
+      functionName: "addElement",
 
-          description:
-            "Add number 5 at the end of array and return it.",
+      description:
+        "Add number 5 at the end of array and return it.",
 
-          starterCode: {
-            javascript: `function addElement(arr) {
-  // add 5 to array
+      starterCode: {
+        javascript: `function addElement(arr) {
+  // add 5
 }`
-          },
+      },
 
-          testCases: [
-            { args: [[1, 2]], expected: [1, 2, 5] }
-          ],
+      testCases: [
+        { args: [[1, 2]], expected: [1, 2, 5] }
+      ],
 
-          hints: [
-            "Use push method",
-            "Return the array"
-          ]
-        }
+      hints: [
+        "Use push()",
+        "Return the array"
       ]
     },
 
-    // 👇 Level 4
+    // 🟡 STEP 4 — Map
     {
-      level: 4,
-      title: "Array Methods",
+      id: "array-map",
+      slug: "array-map",
+      title: "Double Array Values",
+      difficulty: "Medium",
 
-      questions: [
-        {
-          id: "double-array",
-          title: "Double All Elements",
-          difficulty: "Medium",
+      step: 4,
+      concept: "array-map",
 
-          functionName: "doubleArray",
+      functionName: "doubleArray",
 
-          description:
-            "Return a new array where each number is doubled.",
+      description:
+        "Return a new array where each value is doubled.",
 
-          starterCode: {
-            javascript: `function doubleArray(arr) {
+      starterCode: {
+        javascript: `function doubleArray(arr) {
   // use map
 }`
-          },
+      },
 
-          testCases: [
-            { args: [[1, 2, 3]], expected: [2, 4, 6] }
-          ],
+      testCases: [
+        { args: [[1, 2, 3]], expected: [2, 4, 6] }
+      ],
 
-          hints: [
-            "map returns a new array",
-            "Multiply each element by 2"
-          ]
-        }
+      hints: [
+        "map returns new array",
+        "Multiply each element"
       ]
     },
 
-    // 👇 Level 5
+    // 🔴 STEP 5 — FINAL PROBLEM (Two Sum)
     {
-      level: 5,
-      title: "Looping Arrays",
+      id: "two-sum",
+      slug: "two-sum",
+      title: "Two Sum",
+      difficulty: "Medium",
 
-      questions: [
-        {
-          id: "sum-array",
-          title: "Sum of Array",
-          difficulty: "Medium",
+      step: 5,
+      concept: "array-problem-solving",
 
-          functionName: "sumArray",
+      functionName: "twoSum",
+      returnType: "array",
 
-          description:
-            "Return sum of all numbers in array.",
+      description:
+        "Return indices of the two numbers such that they add up to target.",
 
-          starterCode: {
-            javascript: `function sumArray(arr) {
-  // loop through array
+      starterCode: {
+        javascript: `function twoSum(nums, target) {
+  // solve using loops
 }`
-          },
+      },
 
-          testCases: [
-            { args: [[1, 2, 3]], expected: 6 }
-          ],
-
-          hints: [
-            "Use for loop",
-            "Initialize sum = 0"
-          ]
-        }
-      ]
-    },
-
-    // 👇 Level 6 (REAL PROBLEM)
-    {
-      level: 6,
-      title: "Real Problem",
-
-      questions: [
+      testCases: [
         {
-          id: "two-sum",
-          title: "Two Sum",
-          difficulty: "Medium",
-
-          functionName: "twoSum",
-
-          description:
-            "Return indices of two numbers that add up to target.",
-
-          starterCode: {
-            javascript: `function twoSum(nums, target) {
-  // solve using loop
-}`
-          },
-
-          testCases: [
-            {
-              args: [[2, 7, 11, 15], 9],
-              expected: [0, 1]
-            }
-          ],
-
-          hints: [
-            "Use two loops",
-            "Return indices"
-          ]
+          args: [[2, 7, 11, 15], 9],
+          expected: [0, 1]
         }
+      ],
+
+      hints: [
+        "Use two loops",
+        "Return indices"
       ]
     }
+
   ]
 },
+
 
   phase1_debugging: {
     id: "phase1_debugging",
