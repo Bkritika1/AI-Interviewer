@@ -119,6 +119,7 @@ import Home from "./pages/Homepage";
 import ModeSelection from "./pages/ModeSelection";
 import Practice from "./pages/Dashboard/Practice";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
+import HTMLCoursePage from "./pages/HTMLCoursePage";
 
 function App() {
   return (
@@ -127,6 +128,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/modes" element={<ModeSelection />} />
       <Route path="/dashboard" element={<DashboardLayout />}>
+       <Route path="learn" element={<HTMLCoursePage />} />
   <Route path="practice" element={<Practice />} />
   <Route path="practice/:section" element={<Practice />} />
   <Route path="practice/:section/:topicId" element={<Practice />} />

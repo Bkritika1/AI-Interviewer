@@ -1,0 +1,81 @@
+.course-layout {
+  display: flex;
+  height: 100vh;
+  background: #f6f7fb;
+}
+
+/* 🔥 Sidebar */
+.sidebar {
+  width: 240px;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.course-layout.closed .sidebar {
+  display: none;
+}
+
+/* Main Area */
+.main-area {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* CENTER */
+.lesson-content {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  overflow-y: auto;
+  color: #020617;
+}
+
+/* RIGHT */
+.editor-area {
+  flex: 1;
+  background: #0f172a;
+  color: white;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-editor {
+  height: 220px;
+  background: #020617;
+  color: #22c55e;
+  border: none;
+  border: none;
+
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.preview-frame {
+  flex: 1;
+  background: white;
+  border: none;
+  margin-top: 10px;
+}
+
+.run-btn {
+  background: #22c55e;
+  border: none;
+  padding: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
