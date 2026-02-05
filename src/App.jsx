@@ -123,23 +123,45 @@ import HTMLCoursePage from "./pages/HTMLCoursePage";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/modes" element={<ModeSelection />} />
-      <Route path="/dashboard" element={<DashboardLayout />}>
-       <Route path="learn" element={<HTMLCoursePage />} />
-  <Route path="practice" element={<Practice />} />
-  <Route path="practice/:section" element={<Practice />} />
-  <Route path="practice/:section/:topicId" element={<Practice />} />
-  <Route
-    path="practice/:section/:topicId/:questionId"
-    element={<Practice />}
-  />
-</Route>
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="/modes" element={<ModeSelection />} />
+//       <Route path="/dashboard" element={<DashboardLayout />}>
+//        <Route path="learn" element={<HTMLCoursePage />} />
+//   <Route path="practice" element={<Practice />} />
+//   <Route path="practice/:section" element={<Practice />} />
+//   <Route path="practice/:section/:topicId" element={<Practice />} />
+//   <Route
+//     path="practice/:section/:topicId/:questionId"
+//     element={<Practice />}
+//   />
+// </Route>
 
-      </Routes>
-    </BrowserRouter>
+//       </Routes>
+//     </BrowserRouter>
+
+<BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/modes" element={<ModeSelection />} />
+
+    {/* 🔥 Learn Mode (NO DashboardLayout) */}
+    <Route path="/learn" element={<HTMLCoursePage />} />
+
+    {/* Dashboard Layout only for practice */}
+    <Route path="/dashboard" element={<DashboardLayout />}>
+      <Route path="practice" element={<Practice />} />
+      <Route path="practice/:section" element={<Practice />} />
+      <Route path="practice/:section/:topicId" element={<Practice />} />
+      <Route
+        path="practice/:section/:topicId/:questionId"
+        element={<Practice />}
+      />
+    </Route>
+  </Routes>
+</BrowserRouter>
+
   );
 }
 

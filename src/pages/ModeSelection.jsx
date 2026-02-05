@@ -23,7 +23,7 @@ const ModeSelection = () => {
   title="Learn Mode"
   desc="Topic-based deep dives guided by AI."
   buttonText="Start Learning"
-  to="/dashboard/learn"
+  to="/learn"
 />
 
 <ModeCard
