@@ -222,6 +222,78 @@ export const htmlCourse = {
 
 </body>
 </html>`
+        },
+            {
+          id: "html-attributes",
+          title: "HTML Attributes",
+          description:
+            "HTML attributes provide additional information about elements. Attributes are always written in the start tag.",
+          instructions:
+            "Add an image with src and alt attributes. Also add a link with href attribute.",
+          starterCode: `<!DOCTYPE html>
+<html>
+<body>
+
+<!-- Add img tag with src and alt -->
+<!-- Add anchor tag with href -->
+
+</body>
+</html>`
+        },
+
+        {
+          id: "html-styles",
+          title: "HTML Styles",
+          description:
+            "The style attribute is used to add inline CSS to HTML elements like color, font-size, and background.",
+          instructions:
+            "Add a heading with red color and a paragraph with bigger font size using style attribute.",
+          starterCode: `<!DOCTYPE html>
+<html>
+<body>
+
+<!-- Add h1 with style color -->
+<!-- Add p with style font-size -->
+
+</body>
+</html>`
+        },
+
+        {
+          id: "html-tables",
+          title: "HTML Tables",
+          description:
+            "HTML tables are defined using table, tr, th, and td tags to display data in rows and columns.",
+          instructions:
+            "Create a table with 2 rows and 2 columns including table headers.",
+          starterCode: `<!DOCTYPE html>
+<html>
+<body>
+
+<!-- Create table -->
+<!-- Use tr, th, td -->
+
+</body>
+</html>`
+        },
+
+        {
+          id: "html-forms",
+          title: "HTML Forms",
+          description:
+            "HTML forms are used to collect user input using input, label, and button elements.",
+          instructions:
+            "Create a form with name input, email input, and a submit button.",
+          starterCode: `<!DOCTYPE html>
+<html>
+<body>
+
+<!-- Create form -->
+<!-- Add input fields -->
+<!-- Add submit button -->
+
+</body>
+</html>`
         }
       ]
     }
