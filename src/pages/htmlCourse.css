@@ -213,3 +213,316 @@
   border-radius: 6px;
   border: none;
 }
+
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #0f172a;
+}
+
+.course-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 70px;
+  background: #111827;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+
+.course-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr 520px;
+  height: 100%;
+}
+
+.sidebar {
+  background: #0b1220;
+  color: white;
+  padding: 20px;
+}
+
+.lesson-item {
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.lesson-item.active {
+  background: #f59e0b;
+  color: black;
+}
+
+.lesson-item.completed {
+  color: #22c55e;
+}
+
+.lesson-item.locked {
+  opacity: 0.4;
+}
+
+.lesson-panel {
+  background: #f3f4f6;
+  padding: 40px;
+}
+
+.lesson-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.progress-bar {
+  width: 200px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 20px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: orange;
+  border-radius: 20px;
+}
+
+.editor-panel {
+  background: #020617;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.editor {
+  flex: 1;
+  background: #020617;
+  color: white;
+}
+
+.run-btn {
+  background: orange;
+  border: none;
+  padding: 14px;
+  border-radius: 30px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.preview {
+  height: 220px;
+  background: white;
+}
+body{
+  margin:0;
+  font-family:Inter, sans-serif;
+  background:#0f172a;
+}
+
+/* Layout */
+
+.devforge-wrapper{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.devforge-main{
+  flex:1;
+  display:grid;
+  grid-template-columns:280px 1fr 520px;
+}
+
+/* HEADER */
+
+.df-header{
+  height:70px;
+  background:#1e293b;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  color:white;
+}
+
+.df-header span{color:#f59e0b}
+
+.df-left{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.df-left nav{
+  display:flex;
+  gap:20px;
+  color:#94a3b8;
+}
+
+.xp{
+  background:linear-gradient(135deg,#fbbf24,#f59e0b);
+  padding:8px 14px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+/* SIDEBAR */
+
+.df-sidebar{
+  background:#1e293b;
+  padding:20px;
+  color:white;
+}
+
+.timeline-item{
+  display:flex;
+  gap:14px;
+  margin-bottom:20px;
+}
+
+.timeline-left{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.circle{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #475569;
+  background:#0f172a;
+}
+
+.circle.completed{
+  border-color:#f59e0b;
+  color:#f59e0b;
+}
+
+.circle.current{
+  background:#f59e0b;
+  box-shadow:0 0 10px rgba(245,158,11,0.6);
+}
+
+.circle.locked{
+  opacity:.5;
+}
+
+.line{
+  width:2px;
+  height:60px;
+  background:#475569;
+}
+
+.line.gold{
+  background:#b45309;
+}
+
+/* QUESTIONS */
+
+.question{
+  padding:8px;
+  border-radius:8px;
+  font-size:12px;
+}
+
+.question.active{
+  border:1px solid #f59e0b;
+  background:rgba(245,158,11,.2);
+}
+
+.question.locked{
+  color:#64748b;
+}
+
+/* CONTENT */
+
+.df-content{
+  background:#fff;
+  padding:40px;
+}
+
+.content-inner{
+  max-width:700px;
+  margin:auto;
+}
+
+.lesson-top{
+  display:flex;
+  justify-content:space-between;
+}
+
+.progress-bar{
+  width:100px;
+  height:6px;
+  background:#eee;
+}
+
+.progress-fill{
+  width:30%;
+  height:100%;
+  background:#f59e0b;
+}
+
+.quote{
+  border-left:4px solid #f59e0b;
+  padding:20px;
+  background:#f8fafc;
+  margin:20px 0;
+}
+
+/* EDITOR */
+
+.df-editor{
+  background:#0b0f1a;
+  display:flex;
+  flex-direction:column;
+  padding:10px;
+  color:white;
+}
+
+.editor-area{
+  flex:1;
+  background:#020617;
+  padding:20px;
+}
+
+.run-btn{
+  margin-top:10px;
+  padding:14px;
+  background:#f59e0b;
+  border:none;
+  border-radius:12px;
+  font-weight:bold;
+}
+
+.preview{
+  background:white;
+  color:#333;
+  height:180px;
+  margin-top:10px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* FOOTER */
+
+.devforge-footer{
+  background:#1e293b;
+  color:#94a3b8;
+  font-size:11px;
+  padding:6px 12px;
+  display:flex;
+  justify-content:space-between;
+}
