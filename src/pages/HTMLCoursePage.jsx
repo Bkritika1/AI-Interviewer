@@ -268,19 +268,22 @@ import { useState } from "react";
 import { htmlCourse } from "../data/htmlCourseData";
 import Header from "../components/Header";
 import CourseSidebar from "../components/CourseSidebar";
-import LessonPanel from "../components/LessonContent";
 import EditorPanel from "../components/EditorPanel";
 import "./htmlCourse.css";
 import LessonContent from "../components/LessonContent.jsx";
 
 const HTMLCoursePage = () => {
-
-  const lessons = htmlCourse.topics[0].lessons;
-
+const lessons = htmlCourse.topics[0].lessons;
+const [selectedLesson, setSelectedLesson] = useState(lessons[0]);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [completedLessons, setCompletedLessons] = useState([]);
 
-  const [selectedLesson, setSelectedLesson] = useState(lessons[0]);
+
+
+const [selectedQuestion, setSelectedQuestion] = useState(
+  lessons[1].questions[0]
+);
+
 
   // ===== UNLOCK LOGIC =====
   const isLessonUnlocked = (lessonIndex) => {
@@ -305,13 +308,11 @@ const HTMLCoursePage = () => {
       <div className="course-layout">
 
         {sidebarOpen && (
-          <CourseSidebar
-            lessons={lessons}
-            selectedLesson={selectedLesson}
-            setSelectedLesson={setSelectedLesson}
-            completedLessons={completedLessons}
-            isLessonUnlocked={isLessonUnlocked}
-          />
+       <CourseSidebar
+  topics={htmlCourse.topics}
+  selectedLesson={selectedLesson}
+  setSelectedLesson={setSelectedLesson}
+/>
         )}
 
         <LessonContent

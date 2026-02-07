@@ -1,57 +1,123 @@
-export default function CourseSidebar() {
+export default function CourseSidebar({
+  topics,
+  selectedLesson,
+  setSelectedLesson,
+  progress = {}
+}) {
   return (
     <aside className="df-sidebar">
       <h4 className="curriculum">CURRICULUM</h4>
 
-      <p className="module">MODULE 1</p>
-      <p className="module-title">HTML Fundamentals</p>
+      {topics.map((topic, topicIndex) => (
+        <div key={topic.id}>
+          <p className="module">MODULE {topicIndex + 1}</p>
+          <p className="module-title">{topic.title}</p>
 
-      <div className="timeline">
+          <div className="timeline">
+            {topic.lessons.map((lesson, index) => {
+              const isCompleted = progress[lesson.id] === "completed";
+              const isCurrent = selectedLesson.id === lesson.id;
 
-        {/* COMPLETED */}
-        <div className="timeline-item">
-          <div className="timeline-left">
-            <div className="circle completed">✓</div>
-            <div className="line gold"></div>
-          </div>
+              const prevLesson =
+                topic.lessons[index - 1];
 
-          <div>
-            <p className="lesson-done">Lesson Intro</p>
-            <span className="completed-badge">COMPLETED</span>
+              const isLocked =
+                index !== 0 &&
+                progress[prevLesson?.id] !== "completed";
+
+              return (
+                <div
+                  key={lesson.id}
+                  className={`timeline-item ${
+                    isLocked ? "locked" : ""
+                  }`}
+                  onClick={() => {
+                    if (!isLocked) {
+                      setSelectedLesson(lesson);
+                    }
+                  }}
+                >
+                  {/* LEFT SIDE TIMELINE */}
+                  <div className="timeline-left">
+                    <div
+                      className={`circle ${
+                        isCompleted
+                          ? "completed"
+                          : isCurrent
+                          ? "current"
+                          : isLocked
+                          ? "locked"
+                          : "default"
+                      }`}
+                    >
+                      {isCompleted ? "✓" : isLocked ? "🔒" : ""}
+                    </div>
+
+                    {index !== topic.lessons.length - 1 && (
+                      <div
+                        className={`line ${
+                          isCompleted ? "gold" : ""
+                        }`}
+                      ></div>
+                    )}
+                  </div>
+
+                  {/* RIGHT CONTENT */}
+                  <div>
+                    <p
+                      className={
+                        isCompleted
+                          ? "lesson-done"
+                          : isCurrent
+                          ? "lesson-active"
+                          : ""
+                      }
+                    >
+                      {lesson.title}
+                    </p>
+
+                    {/* COMPLETED BADGE */}
+                    {isCompleted && (
+                      <span className="completed-badge">
+                        COMPLETED
+                      </span>
+                    )}
+
+                    {/* QUESTIONS */}
+                    {isCurrent &&
+                      lesson.questions?.map((q, i) => {
+                        const qCompleted =
+                          progress[`${lesson.id}-${i}`] ===
+                          "completed";
+
+                        const qLocked =
+                          i !== 0 &&
+                          progress[
+                            `${lesson.id}-${i - 1}`
+                          ] !== "completed";
+
+                        return (
+                          <div
+                            key={i}
+                            className={`question ${
+                              qLocked
+                                ? "locked"
+                                : "active"
+                            }`}
+                          >
+                            {qLocked ? "🔒" : "▶"} {q.title}
+                          </div>
+                        );
+                      })}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
+      ))}
 
-        {/* CURRENT */}
-        <div className="timeline-item">
-          <div className="timeline-left">
-            <div className="circle current"></div>
-            <div className="line"></div>
-          </div>
-
-          <div>
-            <p className="lesson-active">HTML Headings</p>
-
-            <div className="question active">
-              ▶ Question 1: The H1 Tag
-            </div>
-
-            <div className="question locked">
-              🔒 Question 2: Sub-headings
-            </div>
-          </div>
-        </div>
-
-        {/* LOCKED */}
-        <div className="timeline-item locked">
-          <div className="timeline-left">
-            <div className="circle locked">🔒</div>
-            <div className="line"></div>
-          </div>
-
-          <p>Paragraph Tags</p>
-        </div>
-      </div>
-
+      {/* DAILY GOAL */}
       <div className="daily">
         <p>DAILY GOAL 70%</p>
         <div className="goal-bar">
