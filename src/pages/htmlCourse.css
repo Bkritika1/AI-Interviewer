@@ -526,3 +526,87 @@ body{
   display:flex;
   justify-content:space-between;
 }
+
+
+.course-layout{
+  display:flex;
+  height:100vh;
+  background:#0e0b1f;
+}
+
+.course-sidebar{
+  width:260px;
+  background:#0f1124;
+  padding:20px;
+  color:white;
+}
+
+.timeline{
+  margin-top:20px;
+}
+
+.timeline-item{
+  display:flex;
+  gap:14px;
+  cursor:pointer;
+  margin-bottom:20px;
+  position:relative;
+}
+
+.circle{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#444;
+}
+
+.circle.completed{
+  background:#22c55e;
+}
+
+.circle.active-circle{
+  background:#7c3aed;
+  box-shadow:0 0 10px #7c3aed;
+}
+
+.topic-title{
+  font-weight:600;
+}
+
+.question-item{
+  font-size:13px;
+  color:#aaa;
+  margin-left:10px;
+}
+
+.lesson-content{
+  width:520px;
+  background:#f3f4f6;
+  padding:40px;
+}
+
+.lesson-heading{
+  font-size:38px;
+  font-weight:700;
+}
+
+.quote-box{
+  margin-top:20px;
+  padding:18px;
+  border-left:4px solid #7c3aed;
+  background:#ede9fe;
+  border-radius:12px;
+}
+
+.code-example{
+  background:#0b1020;
+  color:#fff;
+  padding:18px;
+  border-radius:14px;
+  margin-top:20px;
+}
+
+.editor-area{
+  flex:1;
+  background:#090c18;
+}

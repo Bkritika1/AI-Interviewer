@@ -1,0 +1,31 @@
+.sidebar {
+  padding: 20px;
+  color: white;
+}
+
+.sidebar__topicName {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.sidebar__topicName.active {
+  color: #a855f7;
+}
+
+.sidebar__question {
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sidebar__question.active {
+  background: rgba(168,85,247,0.2);
+  border-radius: 8px;
+}
+
+.sidebar__question.locked {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+

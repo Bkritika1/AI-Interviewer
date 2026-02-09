@@ -300,83 +300,206 @@
 //   ]
 // };
 
-export const htmlCourse = {
-  id: "html-course",
-  title: "HTML Course",
+// export const htmlCourse = {
+//   id: "html-course",
+//   title: "HTML Course",
 
-  topics: [
+//   topics: [
+//     {
+//       id: "html-basic",
+//       title: "HTML Fundamentals",
+
+//       lessons: [
+//         {
+//           id: "lesson-intro",
+//           title: "Lesson Intro",
+//           completed: true,
+//           questions: []
+//         },
+
+//         {
+//           id: "html-headings",
+//           title: "HTML Headings",
+//           completed: false,
+
+//           questions: [
+//             {
+//               id: "q1",
+//               title: "Question 1: The H1 Tag",
+//               locked: false,
+
+//               description:
+//                 "HTML has six heading tags from h1 to h6. h1 is the biggest heading.",
+
+//               instructions:
+//                 "Create one <h1> tag inside body.",
+
+//               starterCode: `<!DOCTYPE html>
+// <html>
+// <body>
+
+// <!-- Add your heading -->
+// <h1></h1>
+
+// </body>
+// </html>`
+//             },
+
+//             {
+//               id: "q2",
+//               title: "Question 2: Sub-headings",
+//               locked: true,
+
+//               description:
+//                 "Use h2 and h3 tags for sub headings.",
+
+//               instructions:
+//                 "Add h2 and h3 below h1.",
+
+//               starterCode: `<!DOCTYPE html>
+// <html>
+// <body>
+
+// <h1>Main Title</h1>
+
+// <!-- Add sub headings -->
+
+// </body>
+// </html>`
+//             }
+//           ]
+//         },
+
+//         {
+//           id: "html-paragraph",
+//           title: "Paragraph Tags",
+//           completed: false,
+//           questions: []
+//         }
+//       ]
+//     }
+//   ]
+// };
+
+
+const htmlCourseData = {
+  id: "html_fundamentals",
+  title: "HTML Fundamentals",
+  progressTotal: 10,
+
+  modules: [
     {
-      id: "html-basic",
+      id: "module1",
       title: "HTML Fundamentals",
+      order: 1,
 
-      lessons: [
+      topics: [
         {
-          id: "lesson-intro",
+          id: "lesson_intro",
           title: "Lesson Intro",
           completed: true,
+
+          content: {
+            heading: "Welcome to HTML",
+            description:
+              "HTML is the foundation of web development. It helps structure content on the web using elements and tags. In this module, you will learn how to create headings, paragraphs, and structure your web pages effectively.",
+
+            quote:
+              "Learning HTML is the first step toward becoming a web developer.",
+
+            tasks: [],
+            exampleCode: ""
+          },
+
           questions: []
         },
 
         {
-          id: "html-headings",
+          id: "html_headings",
           title: "HTML Headings",
-          completed: false,
+          active: true,
+
+          content: {
+            heading: "Mastering Headings",
+
+            description:
+              "Headings are used by search engines to index the structure and content of your web pages. Users often skim pages by their headings. It is important to use headings to show the document structure.",
+
+            quote:
+              "The secret of getting ahead is getting started. Structure your code like you structure your goals — one clear heading at a time.",
+
+            tasks: [
+              "Create a main title using the <h1> tag.",
+              "Add a sub-section using the <h2> tag below it."
+            ],
+
+            exampleCode: `<h1>My Awesome Title</h1>
+<h2>The Subtitle</h2>`
+          },
 
           questions: [
             {
-              id: "q1",
+              id: "q1_h1_tag",
               title: "Question 1: The H1 Tag",
-              locked: false,
+              difficulty: "Easy",
 
-              description:
-                "HTML has six heading tags from h1 to h6. h1 is the biggest heading.",
+              starterCode: {
+                html: `<h1>Type your heading here...</h1>`
+              },
 
-              instructions:
-                "Create one <h1> tag inside body.",
-
-              starterCode: `<!DOCTYPE html>
-<html>
-<body>
-
-<!-- Add your heading -->
-<h1></h1>
-
-</body>
-</html>`
+              testCases: []
             },
-
             {
-              id: "q2",
+              id: "q2_sub_headings",
               title: "Question 2: Sub-headings",
               locked: true,
 
-              description:
-                "Use h2 and h3 tags for sub headings.",
+              starterCode: {
+                html: `<h1>Main Title</h1>
+<h2>Sub Heading</h2>`
+              },
 
-              instructions:
-                "Add h2 and h3 below h1.",
-
-              starterCode: `<!DOCTYPE html>
-<html>
-<body>
-
-<h1>Main Title</h1>
-
-<!-- Add sub headings -->
-
-</body>
-</html>`
+              testCases: []
             }
           ]
         },
 
         {
-          id: "html-paragraph",
+          id: "paragraph_tags",
           title: "Paragraph Tags",
-          completed: false,
-          questions: []
+          locked: true,
+
+          content: {
+            heading: "Working with Paragraphs",
+
+            description:
+              "Paragraph tags help you organize text into readable sections. They improve readability and accessibility across devices.",
+
+            quote:
+              "Good structure makes content easier to understand.",
+
+            tasks: [
+              "Create a paragraph using the <p> tag.",
+              "Write at least one sentence inside it."
+            ],
+
+            exampleCode: `<p>This is a paragraph.</p>`
+          },
+
+          questions: [
+            {
+              id: "q1_paragraph",
+              title: "Create a Paragraph",
+
+              starterCode: {
+                html: `<p>Write something here...</p>`
+              }
+            }
+          ]
         }
       ]
     }
   ]
 };
+
+export default htmlCourseData;

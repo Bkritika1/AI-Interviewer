@@ -264,77 +264,120 @@
 
 // export default HTMLCoursePage;
 
-import { useState } from "react";
-import { htmlCourse } from "../data/htmlCourseData";
-import Header from "../components/Header";
+// import { useState } from "react";
+// import { htmlCourse } from "../data/htmlCourseData";
+// import Header from "../components/Header";
+// import CourseSidebar from "../components/CourseSidebar";
+// import EditorPanel from "../components/EditorPanel";
+// import "./htmlCourse.css";
+// import LessonContent from "../components/LessonContent.jsx";
+
+// const HTMLCoursePage = () => {
+// const lessons = htmlCourse.topics[0].lessons;
+// const [selectedLesson, setSelectedLesson] = useState(lessons[0]);
+//   const [sidebarOpen, setSidebarOpen] = useState(true);
+//   const [completedLessons, setCompletedLessons] = useState([]);
+
+
+
+// const [selectedQuestion, setSelectedQuestion] = useState(
+//   lessons[1].questions[0]
+// );
+
+
+//   // ===== UNLOCK LOGIC =====
+//   const isLessonUnlocked = (lessonIndex) => {
+//     if (lessonIndex === 0) return true;
+
+//     const prevLesson = lessons[lessonIndex - 1];
+//     return completedLessons.includes(prevLesson.id);
+//   };
+
+//   // ===== COMPLETE LESSON =====
+//   const markLessonComplete = (lessonId) => {
+//     if (!completedLessons.includes(lessonId)) {
+//       setCompletedLessons([...completedLessons, lessonId]);
+//     }
+//   };
+
+//   return (
+//     <div className="course-wrapper">
+
+//       <Header />
+
+//       <div className="course-layout">
+
+//         {sidebarOpen && (
+//        <CourseSidebar
+//   topics={htmlCourse.topics}
+//   selectedLesson={selectedLesson}
+//   setSelectedLesson={setSelectedLesson}
+// />
+//         )}
+
+//         <LessonContent
+//           lesson={selectedLesson}
+//           completedLessons={completedLessons}
+//         />
+
+//         <EditorPanel
+//           lesson={selectedLesson}
+//           markLessonComplete={markLessonComplete}
+//         />
+
+//         <button
+//           className="collapse-btn"
+//           onClick={() => setSidebarOpen(!sidebarOpen)}
+//         >
+//           ☰
+//         </button>
+
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default HTMLCoursePage;
+
+import './htmlCourse.css';
+import React, { useState } from "react";
+import htmlCourseData from "../data/htmlCourseData";
+
 import CourseSidebar from "../components/CourseSidebar";
-import EditorPanel from "../components/EditorPanel";
-import "./htmlCourse.css";
+
+// import "./htmlCoursePage.css";
 import LessonContent from "../components/LessonContent.jsx";
+import CodeEditor from '../components/CodeEditor.jsx.jsx';
 
-const HTMLCoursePage = () => {
-const lessons = htmlCourse.topics[0].lessons;
-const [selectedLesson, setSelectedLesson] = useState(lessons[0]);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [completedLessons, setCompletedLessons] = useState([]);
+export default function HtmlCoursePage() {
+  const module = htmlCourseData.modules[0];
 
+  const [activeTopicId, setActiveTopicId] = useState(
+    module.topics.find(t => t.active)?.id || module.topics[0].id
+  );
 
-
-const [selectedQuestion, setSelectedQuestion] = useState(
-  lessons[1].questions[0]
-);
-
-
-  // ===== UNLOCK LOGIC =====
-  const isLessonUnlocked = (lessonIndex) => {
-    if (lessonIndex === 0) return true;
-
-    const prevLesson = lessons[lessonIndex - 1];
-    return completedLessons.includes(prevLesson.id);
-  };
-
-  // ===== COMPLETE LESSON =====
-  const markLessonComplete = (lessonId) => {
-    if (!completedLessons.includes(lessonId)) {
-      setCompletedLessons([...completedLessons, lessonId]);
-    }
-  };
+  const activeTopic = module.topics.find(
+    t => t.id === activeTopicId
+  );
 
   return (
-    <div className="course-wrapper">
+    <div className="course-layout">
 
-      <Header />
+      {/* LEFT SIDEBAR */}
+      <CourseSidebar
+        module={module}
+        activeTopicId={activeTopicId}
+        onSelectTopic={setActiveTopicId}
+      />
 
-      <div className="course-layout">
+      {/* MIDDLE CONTENT */}
+      <LessonContent topic={activeTopic} />
 
-        {sidebarOpen && (
-       <CourseSidebar
-  topics={htmlCourse.topics}
-  selectedLesson={selectedLesson}
-  setSelectedLesson={setSelectedLesson}
-/>
-        )}
-
-        <LessonContent
-          lesson={selectedLesson}
-          completedLessons={completedLessons}
-        />
-
-        <EditorPanel
-          lesson={selectedLesson}
-          markLessonComplete={markLessonComplete}
-        />
-
-        <button
-          className="collapse-btn"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          ☰
-        </button>
-
+      {/* RIGHT SIDE (placeholder abhi) */}
+      <div className="editor-area">
+        <CodeEditor/>
       </div>
+
     </div>
   );
-};
-
-export default HTMLCoursePage;
+}
