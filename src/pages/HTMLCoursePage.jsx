@@ -375,6 +375,7 @@ export default function HtmlCoursePage() {
 
       {/* RIGHT SIDE (placeholder abhi) */}
       <div className="editor-area">
+        <h1>code editor </h1>
         <CodeEditor/>
       </div>
 
