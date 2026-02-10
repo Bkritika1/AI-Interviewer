@@ -180,6 +180,8 @@ export default function CourseSidebar({
   activeTopicId,
   onSelectTopic
 }) {
+
+  
   return (
     <div className="course-sidebar">
 

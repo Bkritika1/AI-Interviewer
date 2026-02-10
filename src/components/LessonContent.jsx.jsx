@@ -64,7 +64,8 @@
 // }
 
 
-export default function LessonContent({ topic }) {
+export default function LessonContent({ topic, onCompleteQuestion }) {
+
 
   if (!topic) return null;
 
@@ -100,6 +101,23 @@ export default function LessonContent({ topic }) {
           ))}
         </div>
       )}
+      {topic.questions?.map(q => (
+  <button
+    key={q.id}
+    disabled={q.locked}
+    onClick={() =>
+      onCompleteQuestion(topic.id, q.id)
+    }
+    style={{
+      opacity: q.locked ? 0.4 : 1,
+      cursor: q.locked ? "not-allowed" : "pointer",
+      marginTop: "10px"
+    }}
+  >
+    {q.completed ? "✅" : "⬜"} {q.title}
+  </button>
+))}
+
 
       {/* CODE SNIPPET */}
       {content.exampleCode && (

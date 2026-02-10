@@ -350,32 +350,69 @@ import LessonContent from "../components/LessonContent.jsx";
 import CodeEditor from '../components/CodeEditor.jsx.jsx';
 
 export default function HtmlCoursePage() {
+  const [progress, setProgress] = useState({});
   const module = htmlCourseData.modules[0];
 
   const [activeTopicId, setActiveTopicId] = useState(
     module.topics.find(t => t.active)?.id || module.topics[0].id
   );
 
-  const activeTopic = module.topics.find(
-    t => t.id === activeTopicId
-  );
+
+
+const moduleWithProgress = {
+  ...module,
+  topics: module.topics.map(topic => {
+
+    const completedQuestions = progress[topic.id] || [];
+
+    return {
+      ...topic,
+      questions: topic.questions.map((q, index) => ({
+        ...q,
+        completed: completedQuestions.includes(q.id),
+        locked:
+          index !== 0 &&
+          !completedQuestions.includes(
+            topic.questions[index - 1]?.id
+          )
+      }))
+    };
+  })
+};
+const activeTopic = moduleWithProgress.topics.find(
+  t => t.id === activeTopicId
+);
+
+  const handleCompleteQuestion = (topicId, questionId) => {
+  setProgress(prev => {
+    const topicProgress = prev[topicId] || [];
+
+    if (topicProgress.includes(questionId)) return prev;
+
+    return {
+      ...prev,
+      [topicId]: [...topicProgress, questionId]
+    };
+  });
+};
 
   return (
     <div className="course-layout">
 
       {/* LEFT SIDEBAR */}
-      <CourseSidebar
-        module={module}
-        activeTopicId={activeTopicId}
-        onSelectTopic={setActiveTopicId}
-      />
+     <CourseSidebar
+  module={moduleWithProgress}
+  activeTopicId={activeTopicId}
+  onSelectTopic={setActiveTopicId}
+/>
 
-      {/* MIDDLE CONTENT */}
-      <LessonContent topic={activeTopic} />
+<LessonContent
+  topic={activeTopic}
+  onCompleteQuestion={handleCompleteQuestion}
+/>
 
       {/* RIGHT SIDE (placeholder abhi) */}
       <div className="editor-area">
-        <h1>code editor </h1>
         <CodeEditor/>
       </div>
 

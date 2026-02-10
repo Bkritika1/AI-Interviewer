@@ -56,56 +56,131 @@
 // }
 
 
+// import { useState } from "react";
+// import Editor from "@monaco-editor/react";
+
+// export default function CodeEditor() {
+//   const starterCode = `<!DOCTYPE html>
+// <html lang="en">
+// <head>
+//   <meta charset="UTF-8" />
+//   <title>HTML Preview</title>
+// </head>
+// <body>
+
+//   <h1>Type your heading here...</h1>
+
+// </body>
+// </html>`;
+
+//   const [code, setCode] = useState(starterCode);
+//   const [preview, setPreview] = useState(starterCode);
+
+//   const runCode = () => {
+//     setPreview(code);
+//   };
+
+//   return (
+//     <div className="editor-area">
+//       {/* TOP BAR */}
+//       <div className="editor-topbar">
+//         <div className="editor-tabs">
+//           <span className="file-name">index.html</span>
+//           <span className="lang-tag">HTML5</span>
+//         </div>
+
+//         <button className="run-btn" onClick={runCode}>
+//           ▶ Run Code
+//         </button>
+
+//         <div className="editor-icons">
+//           <span title="Settings">⚙️</span>
+//           <span title="Maximize">⛶</span>
+//         </div>
+//       </div>
+
+//       {/* MONACO EDITOR */}
+//       <Editor
+//         height="50%"
+//         defaultLanguage="html"
+//         theme="vs-dark"
+//         value={code}
+//         onChange={(value) => setCode(value)}
+//         options={{
+//           fontSize: 14,
+//           minimap: { enabled: false },
+//           scrollBeyondLastLine: false
+//         }}
+//       />
+
+//       {/* LIVE PREVIEW */}
+//       <iframe
+//         title="Live Preview"
+//         className="preview-frame"
+//         srcDoc={preview}
+//       />
+//     </div>
+//   );
+// }
+
+
 import { useState } from "react";
 import Editor from "@monaco-editor/react";
+import "./codeEditor.css";
 
 export default function CodeEditor() {
   const starterCode = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>HTML Preview</title>
+  <title>Live Preview</title>
 </head>
 <body>
 
-  <h1>Type your heading here...</h1>
+  <h1>Hello World</h1>
 
 </body>
 </html>`;
 
   const [code, setCode] = useState(starterCode);
-  const [preview, setPreview] = useState(starterCode);
-
-  const runCode = () => {
-    setPreview(code);
-  };
+  const [theme, setTheme] = useState("vs-dark");
+  const [isMax, setIsMax] = useState(false);
 
   return (
-    <div className="editor-area">
+    <div className={`editor-wrapper ${isMax ? "maximized" : ""}`}>
       {/* TOP BAR */}
       <div className="editor-topbar">
-        <div className="editor-tabs">
-          <span className="file-name">index.html</span>
-          <span className="lang-tag">HTML5</span>
+        <div className="left">
+          <span className="file">index.html</span>
+          <span className="lang">HTML5</span>
         </div>
 
-        <button className="run-btn" onClick={runCode}>
-          ▶ Run Code
-        </button>
+        <div className="right">
+          <button
+            className="icon-btn"
+            onClick={() =>
+              setTheme(theme === "vs-dark" ? "light" : "vs-dark")
+            }
+          >
+            🌙
+          </button>
 
-        <div className="editor-icons">
-          <span title="Settings">⚙️</span>
-          <span title="Maximize">⛶</span>
+          <button
+            className="icon-btn"
+            onClick={() => setIsMax(!isMax)}
+          >
+            ⛶
+          </button>
         </div>
       </div>
 
-      {/* MONACO EDITOR */}
+      {/* EDITOR */}
       <Editor
         height="50%"
-        defaultLanguage="html"
-        theme="vs-dark"
+        language="html"
+        theme={theme}
         value={code}
-        onChange={(value) => setCode(value)}
+        onChange={(value) => setCode(value || "")}
         options={{
           fontSize: 14,
           minimap: { enabled: false },
@@ -116,8 +191,8 @@ export default function CodeEditor() {
       {/* LIVE PREVIEW */}
       <iframe
         title="Live Preview"
-        className="preview-frame"
-        srcDoc={preview}
+        className="preview"
+        srcDoc={code}
       />
     </div>
   );
