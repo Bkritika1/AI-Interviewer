@@ -124,76 +124,122 @@
 // }
 
 
-import { useState } from "react";
+// import { useState } from "react";
+// import Editor from "@monaco-editor/react";
+// import "./codeEditor.css";
+
+// export default function CodeEditor() {
+//   const starterCode = `<!DOCTYPE html>
+// <html lang="en">
+// <head>
+//   <meta charset="UTF-8" />
+//   <title>Live Preview</title>
+// </head>
+// <body>
+
+//   <h1>Hello World</h1>
+
+// </body>
+// </html>`;
+
+//   const [code, setCode] = useState(starterCode);
+//   const [theme, setTheme] = useState("vs-dark");
+//   const [isMax, setIsMax] = useState(false);
+
+//   return (
+//     <div className={`editor-wrapper ${isMax ? "maximized" : ""}`}>
+//       {/* TOP BAR */}
+//       <div className="editor-topbar">
+//         <div className="left">
+//           <span className="file">index.html</span>
+//           <span className="lang">HTML5</span>
+//         </div>
+
+//         <div className="right">
+//           <button
+//             className="icon-btn"
+//             onClick={() =>
+//               setTheme(theme === "vs-dark" ? "light" : "vs-dark")
+//             }
+//           >
+//             🌙
+//           </button>
+
+//           <button
+//             className="icon-btn"
+//             onClick={() => setIsMax(!isMax)}
+//           >
+//             ⛶
+//           </button>
+//         </div>
+//       </div>
+
+//       {/* EDITOR */}
+//       <Editor
+//         height="50%"
+//         language="html"
+//         theme={theme}
+//         value={code}
+//         onChange={(value) => setCode(value || "")}
+//         options={{
+//           fontSize: 14,
+//           minimap: { enabled: false },
+//           scrollBeyondLastLine: false
+//         }}
+//       />
+
+//       {/* LIVE PREVIEW */}
+//       <iframe
+//         title="Live Preview"
+//         className="preview"
+//         srcDoc={code}
+//       />
+//     </div>
+//   );
+// }
+
+
+import { useState, useEffect } from "react";
 import Editor from "@monaco-editor/react";
 import "./codeEditor.css";
 
-export default function CodeEditor() {
-  const starterCode = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Live Preview</title>
-</head>
-<body>
+export default function CodeEditor({
+  topic,
+  activeQuestion
+}) {
 
-  <h1>Hello World</h1>
+  const starter =
+    activeQuestion?.starterCode ||
+    topic?.content?.exampleCode ||
+    "<h1>Start Coding</h1>";
 
-</body>
-</html>`;
+  const [code, setCode] = useState(starter);
 
-  const [code, setCode] = useState(starterCode);
-  const [theme, setTheme] = useState("vs-dark");
-  const [isMax, setIsMax] = useState(false);
+  useEffect(() => {
+    setCode(starter);
+  }, [starter]);
 
   return (
-    <div className={`editor-wrapper ${isMax ? "maximized" : ""}`}>
-      {/* TOP BAR */}
-      <div className="editor-topbar">
-        <div className="left">
-          <span className="file">index.html</span>
-          <span className="lang">HTML5</span>
-        </div>
+    <div className="editor-wrapper">
 
-        <div className="right">
-          <button
-            className="icon-btn"
-            onClick={() =>
-              setTheme(theme === "vs-dark" ? "light" : "vs-dark")
-            }
-          >
-            🌙
-          </button>
-
-          <button
-            className="icon-btn"
-            onClick={() => setIsMax(!isMax)}
-          >
-            ⛶
-          </button>
-        </div>
-      </div>
-
-      {/* EDITOR */}
       <Editor
         height="50%"
         language="html"
-        theme={theme}
+        theme="vs-dark"
         value={code}
         onChange={(value) => setCode(value || "")}
         options={{
           fontSize: 14,
-          minimap: { enabled: false },
-          scrollBeyondLastLine: false
+          minimap: { enabled: false }
         }}
       />
 
-      {/* LIVE PREVIEW */}
       <iframe
         title="Live Preview"
         className="preview"
         srcDoc={code}
       />
+
     </div>
   );
 }

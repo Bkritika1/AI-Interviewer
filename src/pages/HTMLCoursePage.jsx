@@ -340,7 +340,7 @@
 // export default HTMLCoursePage;
 
 import './htmlCourse.css';
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import htmlCourseData from "../data/htmlCourseData";
 
 import CourseSidebar from "../components/CourseSidebar";
@@ -348,72 +348,109 @@ import CourseSidebar from "../components/CourseSidebar";
 // import "./htmlCoursePage.css";
 import LessonContent from "../components/LessonContent.jsx";
 import CodeEditor from '../components/CodeEditor.jsx.jsx';
-
 export default function HtmlCoursePage() {
-  const [progress, setProgress] = useState({});
+
   const module = htmlCourseData.modules[0];
 
+  // 🔥 Load progress from localStorage
+  const [progress, setProgress] = useState(() => {
+    const saved = localStorage.getItem("courseProgress");
+    return saved ? JSON.parse(saved) : {};
+  });
+
   const [activeTopicId, setActiveTopicId] = useState(
-    module.topics.find(t => t.active)?.id || module.topics[0].id
+    module.topics[0].id
   );
 
+  const [activeQuestion, setActiveQuestion] = useState(null);
 
+  // 🔥 Save progress to localStorage
+  useEffect(() => {
+    localStorage.setItem("courseProgress", JSON.stringify(progress));
+  }, [progress]);
 
-const moduleWithProgress = {
-  ...module,
-  topics: module.topics.map(topic => {
+  // 🔥 Build full unlock logic
+  const moduleWithProgress = {
+    ...module,
+    topics: module.topics.map((topic, topicIndex) => {
 
-    const completedQuestions = progress[topic.id] || [];
+      const completedQuestions = progress[topic.id] || [];
 
-    return {
-      ...topic,
-      questions: topic.questions.map((q, index) => ({
-        ...q,
-        completed: completedQuestions.includes(q.id),
-        locked:
-          index !== 0 &&
-          !completedQuestions.includes(
-            topic.questions[index - 1]?.id
-          )
-      }))
-    };
-  })
-};
-const activeTopic = moduleWithProgress.topics.find(
-  t => t.id === activeTopicId
-);
+      const allQuestionsCompleted =
+        topic.questions.length > 0 &&
+        topic.questions.every(q =>
+          completedQuestions.includes(q.id)
+        );
+
+      // 🔥 Topic Lock Logic
+      const previousTopic = module.topics[topicIndex - 1];
+      const previousCompleted =
+        topicIndex === 0 ||
+        (progress[previousTopic?.id] || []).length ===
+        previousTopic?.questions.length;
+
+      return {
+        ...topic,
+        locked: !previousCompleted,
+        completed: allQuestionsCompleted,
+        progressPercent: Math.floor(
+          (completedQuestions.length / topic.questions.length) * 100
+        ),
+        questions: topic.questions.map((q, index) => ({
+          ...q,
+          completed: completedQuestions.includes(q.id),
+          locked:
+            index !== 0 &&
+            !completedQuestions.includes(
+              topic.questions[index - 1]?.id
+            )
+        }))
+      };
+    })
+  };
+
+  const activeTopic =
+    moduleWithProgress.topics.find(
+      t => t.id === activeTopicId
+    );
 
   const handleCompleteQuestion = (topicId, questionId) => {
-  setProgress(prev => {
-    const topicProgress = prev[topicId] || [];
 
-    if (topicProgress.includes(questionId)) return prev;
+    setProgress(prev => {
+      const topicProgress = prev[topicId] || [];
 
-    return {
-      ...prev,
-      [topicId]: [...topicProgress, questionId]
-    };
-  });
-};
+      if (topicProgress.includes(questionId)) return prev;
+
+      return {
+        ...prev,
+        [topicId]: [...topicProgress, questionId]
+      };
+    });
+  };
 
   return (
     <div className="course-layout">
 
-      {/* LEFT SIDEBAR */}
-     <CourseSidebar
-  module={moduleWithProgress}
-  activeTopicId={activeTopicId}
-  onSelectTopic={setActiveTopicId}
-/>
+      <CourseSidebar
+        module={moduleWithProgress}
+        activeTopicId={activeTopicId}
+        onSelectTopic={(id) => {
+          setActiveTopicId(id);
+          setActiveQuestion(null);
+        }}
+      />
 
-<LessonContent
-  topic={activeTopic}
-  onCompleteQuestion={handleCompleteQuestion}
-/>
+      <LessonContent
+        topic={activeTopic}
+        onCompleteQuestion={handleCompleteQuestion}
+        onSelectQuestion={setActiveQuestion}
+      />
 
-      {/* RIGHT SIDE (placeholder abhi) */}
       <div className="editor-area">
-        <CodeEditor/>
+        <CodeEditor
+          topic={activeTopic}
+          activeQuestion={activeQuestion}
+        />
       </div>
 
     </div>

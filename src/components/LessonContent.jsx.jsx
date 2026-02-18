@@ -64,8 +64,78 @@
 // }
 
 
-export default function LessonContent({ topic, onCompleteQuestion }) {
+// export default function LessonContent({ topic, onCompleteQuestion }) {
 
+
+//   if (!topic) return null;
+
+//   const { content } = topic;
+
+//   return (
+//     <div className="lesson-content">
+
+//       <h1 className="lesson-heading">
+//         {content.heading}
+//       </h1>
+
+//       <p className="lesson-desc">
+//         {content.description}
+//       </p>
+
+//       {/* QUOTE BOX */}
+//       {content.quote && (
+//         <div className="quote-box">
+//           {content.quote}
+//         </div>
+//       )}
+
+//       {/* TASK REQUIREMENTS */}
+//       {content.tasks?.length > 0 && (
+//         <div className="tasks">
+//           <h3>Task Requirements</h3>
+
+//           {content.tasks.map((task, i) => (
+//             <div key={i} className="task-item">
+//               {task}
+//             </div>
+//           ))}
+//         </div>
+//       )}
+//       {topic.questions?.map(q => (
+//   <button
+//     key={q.id}
+//     disabled={q.locked}
+//     onClick={() =>
+//       onCompleteQuestion(topic.id, q.id)
+//     }
+//     style={{
+//       opacity: q.locked ? 0.4 : 1,
+//       cursor: q.locked ? "not-allowed" : "pointer",
+//       marginTop: "10px"
+//     }}
+//   >
+//     {q.completed ? "✅" : "⬜"} {q.title}
+//   </button>
+// ))}
+
+
+//       {/* CODE SNIPPET */}
+//       {content.exampleCode && (
+//         <pre className="code-example">
+//           {content.exampleCode}
+//         </pre>
+//       )}
+
+//     </div>
+//   );
+// }
+
+
+export default function LessonContent({
+  topic,
+  onCompleteQuestion,
+  onSelectQuestion
+}) {
 
   if (!topic) return null;
 
@@ -74,57 +144,25 @@ export default function LessonContent({ topic, onCompleteQuestion }) {
   return (
     <div className="lesson-content">
 
-      <h1 className="lesson-heading">
-        {content.heading}
-      </h1>
+      <h1>{content.heading}</h1>
+      <p>{content.description}</p>
 
-      <p className="lesson-desc">
-        {content.description}
-      </p>
-
-      {/* QUOTE BOX */}
-      {content.quote && (
-        <div className="quote-box">
-          {content.quote}
-        </div>
-      )}
-
-      {/* TASK REQUIREMENTS */}
-      {content.tasks?.length > 0 && (
-        <div className="tasks">
-          <h3>Task Requirements</h3>
-
-          {content.tasks.map((task, i) => (
-            <div key={i} className="task-item">
-              {task}
-            </div>
-          ))}
-        </div>
-      )}
       {topic.questions?.map(q => (
-  <button
-    key={q.id}
-    disabled={q.locked}
-    onClick={() =>
-      onCompleteQuestion(topic.id, q.id)
-    }
-    style={{
-      opacity: q.locked ? 0.4 : 1,
-      cursor: q.locked ? "not-allowed" : "pointer",
-      marginTop: "10px"
-    }}
-  >
-    {q.completed ? "✅" : "⬜"} {q.title}
-  </button>
-))}
-
-
-      {/* CODE SNIPPET */}
-      {content.exampleCode && (
-        <pre className="code-example">
-          {content.exampleCode}
-        </pre>
-      )}
+        <button
+          key={q.id}
+          disabled={q.locked}
+          onClick={() => {
+            onSelectQuestion(q);
+            onCompleteQuestion(topic.id, q.id);
+          }}
+          style={{
+            opacity: q.locked ? 0.4 : 1,
+            marginTop: "10px"
+          }}
+        >
+          {q.completed ? "✅" : "⬜"} {q.title}
+        </button>
+      ))}
 
     </div>
   );

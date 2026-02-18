@@ -175,44 +175,101 @@
 // }
 
 
+// export default function CourseSidebar({
+//   module,
+//   activeTopicId,
+//   onSelectTopic
+// }) {
+
+  
+//   return (
+//     <div className="course-sidebar">
+
+//       <h4 className="curriculum">CURRICULUM</h4>
+
+//       <h3 className="module-title">{module.title}</h3>
+
+//       <div className="timeline">
+
+//         {module.topics.map((topic, index) => {
+//           const isActive = topic.id === activeTopicId;
+
+//           return (
+//             <div
+//               key={topic.id}
+//               className={`timeline-item ${isActive ? "active" : ""}`}
+//               onClick={() => !topic.locked && onSelectTopic(topic.id)}
+//             >
+//               <div className={`circle 
+//                 ${topic.completed ? "completed" : ""}
+//                 ${isActive ? "active-circle" : ""}
+//               `}/>
+
+//               <div className="topic-content">
+//                 <p className="topic-title">{topic.title}</p>
+
+//                 {topic.questions?.map(q => (
+//                   <p key={q.id} className="question-item">
+//                     {q.title}
+//                   </p>
+//                 ))}
+//               </div>
+
+//             </div>
+//           );
+//         })}
+//       </div>
+//     </div>
+//   );
+// }
+
 export default function CourseSidebar({
   module,
   activeTopicId,
   onSelectTopic
 }) {
 
-  
   return (
     <div className="course-sidebar">
 
       <h4 className="curriculum">CURRICULUM</h4>
-
       <h3 className="module-title">{module.title}</h3>
 
       <div className="timeline">
 
-        {module.topics.map((topic, index) => {
+        {module.topics.map(topic => {
+
           const isActive = topic.id === activeTopicId;
 
           return (
             <div
               key={topic.id}
-              className={`timeline-item ${isActive ? "active" : ""}`}
+              className={`timeline-item ${isActive ? "active" : ""} ${topic.locked ? "locked" : ""}`}
               onClick={() => !topic.locked && onSelectTopic(topic.id)}
             >
+
               <div className={`circle 
                 ${topic.completed ? "completed" : ""}
                 ${isActive ? "active-circle" : ""}
               `}/>
 
               <div className="topic-content">
-                <p className="topic-title">{topic.title}</p>
+                <p className="topic-title">
+                  {topic.title}
+                  {topic.locked && " 🔒"}
+                </p>
 
-                {topic.questions?.map(q => (
-                  <p key={q.id} className="question-item">
-                    {q.title}
-                  </p>
-                ))}
+                <div className="progress-bar">
+                  <div
+                    className="progress-fill"
+                    style={{ width: `${topic.progressPercent}%` }}
+                  />
+                </div>
+
+                <p className="progress-text">
+                  {topic.progressPercent}%
+                </p>
+
               </div>
 
             </div>
