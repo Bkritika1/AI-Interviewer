@@ -684,7 +684,168 @@ const htmlCourseData = {
                 "You must create a <p> tag with some text inside."
             }
           ]
+        },
+// ====================================================
+// 4️⃣ HTML LISTS
+// ====================================================
+{
+  id: "html_lists",
+  title: "HTML Lists",
+  order: 4,
+
+  content: {
+    heading: "Working with Lists",
+
+    description:
+      "HTML provides ordered and unordered lists to structure grouped content in a clean and readable format.",
+
+    quote:
+      "Lists bring order to your content, just like structure brings clarity to your code.",
+
+    tasks: [
+      "Create an unordered list using <ul>.",
+      "Add at least two <li> items.",
+      "Create an ordered list using <ol>."
+    ],
+
+    exampleCode: `<ul>
+  <li>Item One</li>
+  <li>Item Two</li>
+</ul>
+
+<ol>
+  <li>First</li>
+  <li>Second</li>
+</ol>`
+  },
+
+  questions: [
+    {
+      id: "q1_unordered_list",
+      title: "Create an Unordered List",
+
+      difficulty: "Easy",
+
+      starterCode: ``,
+
+      testCases: [
+        {
+          type: "tagExists",
+          tag: "ul"
+        },
+        {
+          type: "tagExists",
+          tag: "li"
         }
+      ],
+
+      explanation:
+        "You must create a <ul> with at least one <li> item."
+    },
+
+    {
+      id: "q2_ordered_list",
+      title: "Create an Ordered List",
+
+      difficulty: "Easy",
+
+      starterCode: `<ul>
+  <li>Item 1</li>
+</ul>`,
+
+      testCases: [
+        {
+          type: "tagExists",
+          tag: "ol"
+        },
+        {
+          type: "tagExists",
+          tag: "li"
+        }
+      ],
+
+      explanation:
+        "You must include an <ol> with list items."
+    }
+  ]
+},
+// ====================================================
+// 5️⃣ HTML LINKS
+// ====================================================
+{
+  id: "html_links",
+  title: "HTML Links",
+  order: 5,
+
+  content: {
+    heading: "Working with Links",
+
+    description:
+      "Links allow users to navigate between different pages and resources using the anchor <a> tag.",
+
+    quote:
+      "The web is connected through links — master them to master navigation.",
+
+    tasks: [
+      "Create a link using the <a> tag.",
+      "Add an href attribute.",
+      "Add text inside the link."
+    ],
+
+    exampleCode: `<a href="https://example.com">Visit Example</a>`
+  },
+
+  questions: [
+    {
+      id: "q1_create_link",
+      title: "Create a Basic Link",
+
+      difficulty: "Easy",
+
+      starterCode: ``,
+
+      testCases: [
+        {
+          type: "tagExists",
+          tag: "a"
+        },
+        {
+          type: "attributeExists",
+          tag: "a",
+          attribute: "href"
+        }
+      ],
+
+      explanation:
+        "You must create an <a> tag with a valid href attribute."
+    },
+
+    {
+      id: "q2_link_text",
+      title: "Add Text Inside Link",
+
+      difficulty: "Easy",
+
+      starterCode: `<a href="https://example.com"></a>`,
+
+      testCases: [
+        {
+          type: "tagExists",
+          tag: "a"
+        },
+        {
+          type: "tagHasText",
+          tag: "a"
+        }
+      ],
+
+      explanation:
+        "The link must contain visible text inside the <a> tag."
+    }
+  ]
+},
+
+
 
       ]
     }

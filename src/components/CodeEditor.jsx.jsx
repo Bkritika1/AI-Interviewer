@@ -199,31 +199,162 @@
 // }
 
 
+// import { useState, useEffect } from "react";
+// import Editor from "@monaco-editor/react";
+// import "./codeEditor.css";
+
+// export default function CodeEditor({
+//   topic,
+//   activeQuestion
+// }) {
+
+//   const starter =
+//     activeQuestion?.starterCode ||
+//     topic?.content?.exampleCode ||
+//     "<h1>Start Coding</h1>";
+
+//   const [code, setCode] = useState(starter);
+
+//   useEffect(() => {
+//     setCode(starter);
+//   }, [starter]);
+
+//   return (
+//     <div className="editor-wrapper">
+
+//       <Editor
+//         height="50%"
+//         language="html"
+//         theme="vs-dark"
+//         value={code}
+//         onChange={(value) => setCode(value || "")}
+//         options={{
+//           fontSize: 14,
+//           minimap: { enabled: false }
+//         }}
+//       />
+
+//       <iframe
+//         title="Live Preview"
+//         className="preview"
+//         srcDoc={code}
+//       />
+
+//     </div>
+//   );
+// }
+
+
+// import { useState, useEffect } from "react";
+// import Editor from "@monaco-editor/react";
+
+// const BOILERPLATE = `<!DOCTYPE html>
+// <html>
+// <head>
+//   <title>Practice</title>
+// </head>
+// <body>
+
+  
+// </body>
+// </html>`;
+
+// export default function CodeEditor({
+//   activeQuestion,
+//   onValidate
+// }) {
+
+//   const [code, setCode] = useState(BOILERPLATE);
+
+//   // 🔥 Jab new question select ho
+//   // useEffect(() => {
+//   //   if (activeQuestion) {
+//   //     setCode(BOILERPLATE);
+//   //   }
+//   // }, [activeQuestion]);
+//   useEffect(() => {
+//   if (activeQuestion) {
+//     const starter = activeQuestion.starterCode || "";
+//     setCode(
+//       BOILERPLATE.replace(
+//         "</body>",
+//         `${starter}\n\n</body>`
+//       )
+//     );
+//   }
+// }, [activeQuestion]);
+
+
+//   return (
+//     <div className="editor-wrapper">
+
+//      <Editor
+//   height="350px"
+//   language="html"
+//   theme="vs-dark"
+//   value={code}
+//   onChange={(value) => setCode(value || "")}
+//   options={{
+//     fontSize: 14,
+//     minimap: { enabled: false },
+//     readOnly: !activeQuestion
+//   }}
+// />
+
+
+//     {activeQuestion && (
+//   <button
+//     onClick={() =>
+//       onValidate(code, activeQuestion)
+//     }
+//   >
+//     ✅ Validate
+//   </button>
+// )}
+
+
+//       <iframe
+//         title="Live Preview"
+//         srcDoc={code}
+//         className="preview"
+//       />
+
+//     </div>
+//   );
+// }
+
+
 import { useState, useEffect } from "react";
 import Editor from "@monaco-editor/react";
-import "./codeEditor.css";
+
+const BOILERPLATE = `<!DOCTYPE html>
+<html>
+<head>
+  <title>Practice</title>
+</head>
+<body>
+
+  
+</body>
+</html>`;
 
 export default function CodeEditor({
-  topic,
-  activeQuestion
+  activeQuestion,
+  onValidate,
+  validationState
 }) {
 
-  const starter =
-    activeQuestion?.starterCode ||
-    topic?.content?.exampleCode ||
-    "<h1>Start Coding</h1>";
-
-  const [code, setCode] = useState(starter);
+  const [code, setCode] = useState(BOILERPLATE);
 
   useEffect(() => {
-    setCode(starter);
-  }, [starter]);
+    setCode(BOILERPLATE);
+  }, [activeQuestion]);
 
   return (
     <div className="editor-wrapper">
 
       <Editor
-        height="50%"
+        height="350px"
         language="html"
         theme="vs-dark"
         value={code}
@@ -234,10 +365,31 @@ export default function CodeEditor({
         }}
       />
 
+      {activeQuestion && (
+        <button
+          className="validate-btn"
+          onClick={() =>
+            onValidate(code, activeQuestion)
+          }
+        >
+          ✅ Validate
+        </button>
+      )}
+
+      {validationState && (
+        <div
+          className={`validation-box ${
+            validationState.success ? "success" : "error"
+          }`}
+        >
+          {validationState.message}
+        </div>
+      )}
+
       <iframe
         title="Live Preview"
-        className="preview"
         srcDoc={code}
+        className="preview"
       />
 
     </div>

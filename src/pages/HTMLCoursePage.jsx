@@ -345,17 +345,25 @@ import htmlCourseData from "../data/htmlCourseData";
 
 import CourseSidebar from "../components/CourseSidebar";
 
-// import "./htmlCoursePage.css";
+import "./htmlCourse.css";
 import LessonContent from "../components/LessonContent.jsx";
 import CodeEditor from '../components/CodeEditor.jsx.jsx';
+// export default function HtmlCoursePage() {
 export default function HtmlCoursePage() {
-
   const module = htmlCourseData.modules[0];
 
-  // 🔥 Load progress from localStorage
+  // -------------------------------
+  // 🔥 STATE
+  // -------------------------------
+
   const [progress, setProgress] = useState(() => {
     const saved = localStorage.getItem("courseProgress");
     return saved ? JSON.parse(saved) : {};
+  });
+
+  const [xp, setXp] = useState(() => {
+    const savedXP = localStorage.getItem("courseXP");
+    return savedXP ? JSON.parse(savedXP) : 0;
   });
 
   const [activeTopicId, setActiveTopicId] = useState(
@@ -364,12 +372,113 @@ export default function HtmlCoursePage() {
 
   const [activeQuestion, setActiveQuestion] = useState(null);
 
-  // 🔥 Save progress to localStorage
+  const [validationState, setValidationState] = useState(null);
+
+  // -------------------------------
+  // 🔥 SAVE TO LOCAL STORAGE
+  // -------------------------------
+
   useEffect(() => {
     localStorage.setItem("courseProgress", JSON.stringify(progress));
   }, [progress]);
 
-  // 🔥 Build full unlock logic
+  useEffect(() => {
+    localStorage.setItem("courseXP", JSON.stringify(xp));
+  }, [xp]);
+
+  // -------------------------------
+  // 🔥 VALIDATION LOGIC
+  // -------------------------------
+
+  const validateCode = (code, question) => {
+    if (!question?.testCases?.length) return false;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(code, "text/html");
+
+    return question.testCases.every((test) => {
+
+      if (test.type === "tagExists") {
+        return doc.querySelector(test.tag);
+      }
+
+      if (test.type === "tagHasText") {
+        const el = doc.querySelector(test.tag);
+        return el && el.textContent.trim().length > 0;
+      }
+
+      if (test.type === "attributeExists") {
+        const el = doc.querySelector(test.tag);
+        return el && el.hasAttribute(test.attribute);
+      }
+
+      return false;
+    });
+  };
+
+  // -------------------------------
+  // 🔥 COMPLETE QUESTION
+  // -------------------------------
+
+  const handleCompleteQuestion = (topicId, questionId) => {
+
+    setProgress((prev) => {
+      const topicProgress = prev[topicId] || [];
+
+      if (topicProgress.includes(questionId)) return prev;
+
+      return {
+        ...prev,
+        [topicId]: [...topicProgress, questionId],
+      };
+    });
+
+    setXp((prev) => prev + 10);
+  };
+
+  // -------------------------------
+  // 🔥 HANDLE VALIDATE
+  // -------------------------------
+
+  const handleValidate = (code, question) => {
+
+    if (!question) return;
+
+    const isValid = validateCode(code, question);
+
+    if (isValid) {
+
+      handleCompleteQuestion(activeTopicId, question.id);
+
+      const topic = moduleWithProgress.topics.find(
+        (t) => t.id === activeTopicId
+      );
+
+      const currentIndex = topic.questions.findIndex(
+        (q) => q.id === question.id
+      );
+
+      const nextQuestion = topic.questions[currentIndex + 1];
+
+      if (nextQuestion && !nextQuestion.locked) {
+        setActiveQuestion(nextQuestion);
+      } else {
+        setActiveQuestion(null);
+      }
+    }
+
+    setValidationState({
+      success: isValid,
+      message: isValid
+        ? "Correct! 🎉 +10 XP"
+        : question.explanation || "Not correct ❌",
+    });
+  };
+
+  // -------------------------------
+  // 🔥 UNLOCK LOGIC
+  // -------------------------------
+
   const moduleWithProgress = {
     ...module,
     topics: module.topics.map((topic, topicIndex) => {
@@ -378,24 +487,29 @@ export default function HtmlCoursePage() {
 
       const allQuestionsCompleted =
         topic.questions.length > 0 &&
-        topic.questions.every(q =>
+        topic.questions.every((q) =>
           completedQuestions.includes(q.id)
         );
 
-      // 🔥 Topic Lock Logic
       const previousTopic = module.topics[topicIndex - 1];
+
       const previousCompleted =
         topicIndex === 0 ||
         (progress[previousTopic?.id] || []).length ===
-        previousTopic?.questions.length;
+          previousTopic?.questions.length;
 
       return {
         ...topic,
         locked: !previousCompleted,
         completed: allQuestionsCompleted,
-        progressPercent: Math.floor(
-          (completedQuestions.length / topic.questions.length) * 100
-        ),
+        progressPercent:
+          topic.questions.length > 0
+            ? Math.floor(
+                (completedQuestions.length /
+                  topic.questions.length) *
+                  100
+              )
+            : 0,
         questions: topic.questions.map((q, index) => ({
           ...q,
           completed: completedQuestions.includes(q.id),
@@ -403,33 +517,23 @@ export default function HtmlCoursePage() {
             index !== 0 &&
             !completedQuestions.includes(
               topic.questions[index - 1]?.id
-            )
-        }))
+            ),
+        })),
       };
-    })
+    }),
   };
 
-  const activeTopic =
-    moduleWithProgress.topics.find(
-      t => t.id === activeTopicId
-    );
-
-  const handleCompleteQuestion = (topicId, questionId) => {
-
-    setProgress(prev => {
-      const topicProgress = prev[topicId] || [];
-
-      if (topicProgress.includes(questionId)) return prev;
-
-      return {
-        ...prev,
-        [topicId]: [...topicProgress, questionId]
-      };
-    });
-  };
+  const activeTopic = moduleWithProgress.topics.find(
+    (t) => t.id === activeTopicId
+  );
 
   return (
     <div className="course-layout">
+
+      {/* XP Badge */}
+      <div className="xp-badge">
+        🏆 XP: {xp}
+      </div>
 
       <CourseSidebar
         module={moduleWithProgress}
@@ -437,19 +541,25 @@ export default function HtmlCoursePage() {
         onSelectTopic={(id) => {
           setActiveTopicId(id);
           setActiveQuestion(null);
+          setValidationState(null);
         }}
       />
 
       <LessonContent
         topic={activeTopic}
-        onCompleteQuestion={handleCompleteQuestion}
-        onSelectQuestion={setActiveQuestion}
+        onSelectQuestion={(q) => {
+          if (!q.locked) {
+            setActiveQuestion(q);
+            setValidationState(null);
+          }
+        }}
       />
 
       <div className="editor-area">
         <CodeEditor
-          topic={activeTopic}
           activeQuestion={activeQuestion}
+          onValidate={handleValidate}
+          validationState={validationState}
         />
       </div>
 
