@@ -844,6 +844,216 @@ const htmlCourseData = {
     }
   ]
 },
+{
+  id: "html_images",
+  title: "HTML Images",
+  order: 6,
+
+  content: {
+    heading: "Working with Images",
+
+    description:
+      "Images are added using the <img> tag. It is a self-closing tag and requires the src attribute.",
+
+    quote:
+      "A webpage without images is like a story without visuals.",
+
+    tasks: [
+      "Add an image using the <img> tag.",
+      "Include a src attribute.",
+      "Add an alt attribute."
+    ],
+
+    exampleCode: `<img src="image.jpg" alt="Sample Image" />`
+  },
+
+  questions: [
+    {
+      id: "q1_add_image",
+      title: "Add an Image",
+
+      difficulty: "Easy",
+
+      starterCode: ``,
+
+      testCases: [
+        {
+          type: "tagExists",
+          tag: "img"
+        },
+        {
+          type: "attributeExists",
+          tag: "img",
+          attribute: "src"
+        }
+      ],
+
+      explanation:
+        "You must include an <img> tag with a src attribute."
+    },
+
+    {
+      id: "q2_add_alt",
+      title: "Add Alt Attribute",
+
+      difficulty: "Easy",
+
+      starterCode: `<img src="photo.jpg">`,
+
+      testCases: [
+        {
+          type: "tagExists",
+          tag: "img"
+        },
+        {
+          type: "attributeExists",
+          tag: "img",
+          attribute: "alt"
+        }
+      ],
+
+      explanation:
+        "Image must include an alt attribute for accessibility."
+    }
+  ]
+},
+
+{
+  id: "html_div_span",
+  title: "Div and Span",
+  order: 7,
+
+  content: {
+    heading: "Div and Span Elements",
+
+    description:
+      "Div is a block-level container and span is an inline container used to group content.",
+
+    quote:
+      "Structure your content smartly using containers.",
+
+    tasks: [
+      "Create a div element.",
+      "Add some text inside it.",
+      "Create a span inside the div."
+    ],
+
+    exampleCode: `<div>
+  Hello <span>World</span>
+</div>`
+  },
+
+  questions: [
+    {
+      id: "q1_create_div",
+      title: "Create a Div",
+
+      difficulty: "Easy",
+
+      starterCode: ``,
+
+      testCases: [
+        {
+          type: "tagExists",
+          tag: "div"
+        }
+      ],
+
+      explanation:
+        "You must create a <div> element."
+    },
+
+    {
+      id: "q2_add_span",
+      title: "Add Span Inside Div",
+
+      difficulty: "Easy",
+
+      starterCode: `<div>Text here</div>`,
+
+      testCases: [
+        {
+          type: "tagExists",
+          tag: "div"
+        },
+        {
+          type: "tagExists",
+          tag: "span"
+        }
+      ],
+
+      explanation:
+        "You must include a <span> inside the <div>."
+    }
+  ]
+},
+
+{
+  id: "html_semantic",
+  title: "Semantic Tags",
+  order: 8,
+
+  content: {
+    heading: "Understanding Semantic Tags",
+
+    description:
+      "Semantic tags clearly describe their meaning in a human- and machine-readable way.",
+
+    quote:
+      "Good structure improves readability and SEO.",
+
+    tasks: [
+      "Create a <header> section.",
+      "Add a <section> tag.",
+      "Add a <footer> tag."
+    ],
+
+    exampleCode: `<header>Header Area</header>
+<section>Main Content</section>
+<footer>Footer Area</footer>`
+  },
+
+  questions: [
+    {
+      id: "q1_add_header",
+      title: "Add a Header Tag",
+
+      difficulty: "Easy",
+
+      starterCode: ``,
+
+      testCases: [
+        {
+          type: "tagExists",
+          tag: "header"
+        }
+      ],
+
+      explanation:
+        "You must create a <header> tag."
+    },
+
+    {
+      id: "q2_add_footer",
+      title: "Add Footer Tag",
+
+      difficulty: "Easy",
+
+      starterCode: `<header>Header</header>`,
+
+      testCases: [
+        {
+          type: "tagExists",
+          tag: "footer"
+        }
+      ],
+
+      explanation:
+        "You must create a <footer> tag."
+    }
+  ]
+},
+
 
 
 
