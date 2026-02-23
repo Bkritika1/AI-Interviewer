@@ -259,7 +259,7 @@ export default function CourseSidebar({
                   {topic.locked && " 🔒"}
                 </p>
 
-                <div className="progress-bar">
+                {/* <div className="progress-bar">
                   <div
                     className="progress-fill"
                     style={{ width: `${topic.progressPercent}%` }}
@@ -268,7 +268,7 @@ export default function CourseSidebar({
 
                 <p className="progress-text">
                   {topic.progressPercent}%
-                </p>
+                </p> */}
 
               </div>
 

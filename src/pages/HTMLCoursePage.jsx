@@ -339,22 +339,247 @@
 
 // export default HTMLCoursePage;
 
-import './htmlCourse.css';
-import React, { useState,useEffect } from "react";
-import htmlCourseData from "../data/htmlCourseData";
+// import './htmlCourse.css';
+// import React, { useState,useEffect } from "react";
+// import htmlCourseData from "../data/htmlCourseData";
 
-import CourseSidebar from "../components/CourseSidebar";
+// import CourseSidebar from "../components/CourseSidebar";
 
-import "./htmlCourse.css";
-import LessonContent from "../components/LessonContent.jsx";
-import CodeEditor from '../components/CodeEditor.jsx.jsx';
+// import "./htmlCourse.css";
+// import LessonContent from "../components/LessonContent.jsx";
+// import CodeEditor from '../components/CodeEditor.jsx.jsx';
+// // export default function HtmlCoursePage() {
 // export default function HtmlCoursePage() {
+//   const module = htmlCourseData.modules[0];
+
+//   // -------------------------------
+//   // 🔥 STATE
+//   // -------------------------------
+
+//   const [progress, setProgress] = useState(() => {
+//     const saved = localStorage.getItem("courseProgress");
+//     return saved ? JSON.parse(saved) : {};
+//   });
+
+//   const [xp, setXp] = useState(() => {
+//     const savedXP = localStorage.getItem("courseXP");
+//     return savedXP ? JSON.parse(savedXP) : 0;
+//   });
+
+//   const [activeTopicId, setActiveTopicId] = useState(
+//     module.topics[0].id
+//   );
+
+//   const [activeQuestion, setActiveQuestion] = useState(null);
+
+//   const [validationState, setValidationState] = useState(null);
+
+//   // -------------------------------
+//   // 🔥 SAVE TO LOCAL STORAGE
+//   // -------------------------------
+
+//   useEffect(() => {
+//     localStorage.setItem("courseProgress", JSON.stringify(progress));
+//   }, [progress]);
+
+//   useEffect(() => {
+//     localStorage.setItem("courseXP", JSON.stringify(xp));
+//   }, [xp]);
+
+//   // -------------------------------
+//   // 🔥 VALIDATION LOGIC
+//   // -------------------------------
+
+//   const validateCode = (code, question) => {
+//     if (!question?.testCases?.length) return false;
+
+//     const parser = new DOMParser();
+//     const doc = parser.parseFromString(code, "text/html");
+
+//     return question.testCases.every((test) => {
+
+//       if (test.type === "tagExists") {
+//         return doc.querySelector(test.tag);
+//       }
+
+//       if (test.type === "tagHasText") {
+//         const el = doc.querySelector(test.tag);
+//         return el && el.textContent.trim().length > 0;
+//       }
+
+//       if (test.type === "attributeExists") {
+//         const el = doc.querySelector(test.tag);
+//         return el && el.hasAttribute(test.attribute);
+//       }
+
+//       return false;
+//     });
+//   };
+
+//   // -------------------------------
+//   // 🔥 COMPLETE QUESTION
+//   // -------------------------------
+
+//   const handleCompleteQuestion = (topicId, questionId) => {
+
+//     setProgress((prev) => {
+//       const topicProgress = prev[topicId] || [];
+
+//       if (topicProgress.includes(questionId)) return prev;
+
+//       return {
+//         ...prev,
+//         [topicId]: [...topicProgress, questionId],
+//       };
+//     });
+
+//     setXp((prev) => prev + 10);
+//   };
+
+//   // -------------------------------
+//   // 🔥 HANDLE VALIDATE
+//   // -------------------------------
+
+//   const handleValidate = (code, question) => {
+
+//     if (!question) return;
+
+//     const isValid = validateCode(code, question);
+
+//     if (isValid) {
+
+//       handleCompleteQuestion(activeTopicId, question.id);
+
+//       const topic = moduleWithProgress.topics.find(
+//         (t) => t.id === activeTopicId
+//       );
+
+//       const currentIndex = topic.questions.findIndex(
+//         (q) => q.id === question.id
+//       );
+
+//       const nextQuestion = topic.questions[currentIndex + 1];
+
+//       if (nextQuestion && !nextQuestion.locked) {
+//         setActiveQuestion(nextQuestion);
+//       } else {
+//         setActiveQuestion(null);
+//       }
+//     }
+
+//     setValidationState({
+//       success: isValid,
+//       message: isValid
+//         ? "Correct! 🎉 +10 XP"
+//         : question.explanation || "Not correct ❌",
+//     });
+//   };
+
+//   // -------------------------------
+//   // 🔥 UNLOCK LOGIC
+//   // -------------------------------
+
+//   const moduleWithProgress = {
+//     ...module,
+//     topics: module.topics.map((topic, topicIndex) => {
+
+//       const completedQuestions = progress[topic.id] || [];
+
+//       const allQuestionsCompleted =
+//         topic.questions.length > 0 &&
+//         topic.questions.every((q) =>
+//           completedQuestions.includes(q.id)
+//         );
+
+//       const previousTopic = module.topics[topicIndex - 1];
+
+//       const previousCompleted =
+//         topicIndex === 0 ||
+//         (progress[previousTopic?.id] || []).length ===
+//           previousTopic?.questions.length;
+
+//       return {
+//         ...topic,
+//         locked: !previousCompleted,
+//         completed: allQuestionsCompleted,
+//         progressPercent:
+//           topic.questions.length > 0
+//             ? Math.floor(
+//                 (completedQuestions.length /
+//                   topic.questions.length) *
+//                   100
+//               )
+//             : 0,
+//         questions: topic.questions.map((q, index) => ({
+//           ...q,
+//           completed: completedQuestions.includes(q.id),
+//           locked:
+//             index !== 0 &&
+//             !completedQuestions.includes(
+//               topic.questions[index - 1]?.id
+//             ),
+//         })),
+//       };
+//     }),
+//   };
+
+//   const activeTopic = moduleWithProgress.topics.find(
+//     (t) => t.id === activeTopicId
+//   );
+
+//   return (
+//     <div className="course-layout">
+
+//       {/* XP Badge */}
+//       <div className="xp-badge">
+//         🏆 XP: {xp}
+//       </div>
+
+//       <CourseSidebar
+//         module={moduleWithProgress}
+//         activeTopicId={activeTopicId}
+//         onSelectTopic={(id) => {
+//           setActiveTopicId(id);
+//           setActiveQuestion(null);
+//           setValidationState(null);
+//         }}
+//       />
+
+//       <LessonContent
+//         topic={activeTopic}
+//         onSelectQuestion={(q) => {
+//           if (!q.locked) {
+//             setActiveQuestion(q);
+//             setValidationState(null);
+//           }
+//         }}
+//       />
+
+//       <div className="editor-area">
+//         <CodeEditor
+//           activeQuestion={activeQuestion}
+//           onValidate={handleValidate}
+//           validationState={validationState}
+//         />
+//       </div>
+
+//     </div>
+//   );
+// }
+
+import React, { useState, useEffect, useMemo } from "react";
+import "./htmlCourse.css";
+import htmlCourseData from "../data/htmlCourseData";
+import CourseSidebar from "../components/CourseSidebar";
+import LessonContent from "../components/LessonContent.jsx";
+import CodeEditor from "../components/CodeEditor.jsx";
+
 export default function HtmlCoursePage() {
   const module = htmlCourseData.modules[0];
 
-  // -------------------------------
+  // ================================
   // 🔥 STATE
-  // -------------------------------
+  // ================================
 
   const [progress, setProgress] = useState(() => {
     const saved = localStorage.getItem("courseProgress");
@@ -371,12 +596,11 @@ export default function HtmlCoursePage() {
   );
 
   const [activeQuestion, setActiveQuestion] = useState(null);
-
   const [validationState, setValidationState] = useState(null);
 
-  // -------------------------------
-  // 🔥 SAVE TO LOCAL STORAGE
-  // -------------------------------
+  // ================================
+  // 🔥 SAVE LOCAL STORAGE
+  // ================================
 
   useEffect(() => {
     localStorage.setItem("courseProgress", JSON.stringify(progress));
@@ -386,9 +610,71 @@ export default function HtmlCoursePage() {
     localStorage.setItem("courseXP", JSON.stringify(xp));
   }, [xp]);
 
-  // -------------------------------
-  // 🔥 VALIDATION LOGIC
-  // -------------------------------
+  // ================================
+  // 🔥 GLOBAL COURSE PROGRESS
+  // ================================
+
+  const { totalQuestions, completedQuestions, globalPercent } = useMemo(() => {
+    let total = 0;
+    let completed = 0;
+
+    module.topics.forEach((topic) => {
+      total += topic.questions.length;
+      completed += (progress[topic.id] || []).length;
+    });
+
+    return {
+      totalQuestions: total,
+      completedQuestions: completed,
+      globalPercent: total > 0
+        ? Math.floor((completed / total) * 100)
+        : 0,
+    };
+  }, [module, progress]);
+
+  // ================================
+  // 🔥 MODULE WITH LOCK LOGIC
+  // ================================
+
+  const moduleWithProgress = useMemo(() => {
+    return {
+      ...module,
+      topics: module.topics.map((topic, topicIndex) => {
+        const completedQuestions = progress[topic.id] || [];
+
+        const previousTopic = module.topics[topicIndex - 1];
+
+        const previousCompleted =
+          topicIndex === 0 ||
+          (progress[previousTopic?.id] || []).length ===
+            previousTopic?.questions.length;
+
+        const questions = topic.questions.map((q, index) => ({
+          ...q,
+          completed: completedQuestions.includes(q.id),
+          locked:
+            index !== 0 &&
+            !completedQuestions.includes(
+              topic.questions[index - 1]?.id
+            ),
+        }));
+
+        return {
+          ...topic,
+          locked: !previousCompleted,
+          questions,
+        };
+      }),
+    };
+  }, [module, progress]);
+
+  const activeTopic = moduleWithProgress.topics.find(
+    (t) => t.id === activeTopicId
+  );
+
+  // ================================
+  // 🔥 VALIDATION
+  // ================================
 
   const validateCode = (code, question) => {
     if (!question?.testCases?.length) return false;
@@ -397,9 +683,8 @@ export default function HtmlCoursePage() {
     const doc = parser.parseFromString(code, "text/html");
 
     return question.testCases.every((test) => {
-
       if (test.type === "tagExists") {
-        return doc.querySelector(test.tag);
+        return !!doc.querySelector(test.tag);
       }
 
       if (test.type === "tagHasText") {
@@ -416,15 +701,9 @@ export default function HtmlCoursePage() {
     });
   };
 
-  // -------------------------------
-  // 🔥 COMPLETE QUESTION
-  // -------------------------------
-
   const handleCompleteQuestion = (topicId, questionId) => {
-
     setProgress((prev) => {
       const topicProgress = prev[topicId] || [];
-
       if (topicProgress.includes(questionId)) return prev;
 
       return {
@@ -436,18 +715,12 @@ export default function HtmlCoursePage() {
     setXp((prev) => prev + 10);
   };
 
-  // -------------------------------
-  // 🔥 HANDLE VALIDATE
-  // -------------------------------
-
   const handleValidate = (code, question) => {
-
     if (!question) return;
 
     const isValid = validateCode(code, question);
 
     if (isValid) {
-
       handleCompleteQuestion(activeTopicId, question.id);
 
       const topic = moduleWithProgress.topics.find(
@@ -460,7 +733,7 @@ export default function HtmlCoursePage() {
 
       const nextQuestion = topic.questions[currentIndex + 1];
 
-      if (nextQuestion && !nextQuestion.locked) {
+      if (nextQuestion) {
         setActiveQuestion(nextQuestion);
       } else {
         setActiveQuestion(null);
@@ -475,73 +748,43 @@ export default function HtmlCoursePage() {
     });
   };
 
-  // -------------------------------
-  // 🔥 UNLOCK LOGIC
-  // -------------------------------
-
-  const moduleWithProgress = {
-    ...module,
-    topics: module.topics.map((topic, topicIndex) => {
-
-      const completedQuestions = progress[topic.id] || [];
-
-      const allQuestionsCompleted =
-        topic.questions.length > 0 &&
-        topic.questions.every((q) =>
-          completedQuestions.includes(q.id)
-        );
-
-      const previousTopic = module.topics[topicIndex - 1];
-
-      const previousCompleted =
-        topicIndex === 0 ||
-        (progress[previousTopic?.id] || []).length ===
-          previousTopic?.questions.length;
-
-      return {
-        ...topic,
-        locked: !previousCompleted,
-        completed: allQuestionsCompleted,
-        progressPercent:
-          topic.questions.length > 0
-            ? Math.floor(
-                (completedQuestions.length /
-                  topic.questions.length) *
-                  100
-              )
-            : 0,
-        questions: topic.questions.map((q, index) => ({
-          ...q,
-          completed: completedQuestions.includes(q.id),
-          locked:
-            index !== 0 &&
-            !completedQuestions.includes(
-              topic.questions[index - 1]?.id
-            ),
-        })),
-      };
-    }),
-  };
-
-  const activeTopic = moduleWithProgress.topics.find(
-    (t) => t.id === activeTopicId
-  );
+  // ================================
+  // 🔥 UI
+  // ================================
 
   return (
     <div className="course-layout">
 
-      {/* XP Badge */}
-      <div className="xp-badge">
-        🏆 XP: {xp}
+      {/* XP */}
+      <div className="xp-badge">🏆 XP: {xp}</div>
+
+      {/* GLOBAL PROGRESS BAR */}
+      <div className="global-progress-wrapper">
+        <div className="progress-info">
+          Progress: {completedQuestions} / {totalQuestions} Questions ({globalPercent}%)
+        </div>
+
+        <div className="global-progress-bar">
+          <div
+            className="global-progress-fill"
+            style={{ width: `${globalPercent}%` }}
+          />
+        </div>
       </div>
 
       <CourseSidebar
         module={moduleWithProgress}
         activeTopicId={activeTopicId}
         onSelectTopic={(id) => {
-          setActiveTopicId(id);
-          setActiveQuestion(null);
-          setValidationState(null);
+          const topic = moduleWithProgress.topics.find(
+            (t) => t.id === id
+          );
+
+          if (!topic.locked) {
+            setActiveTopicId(id);
+            setActiveQuestion(null);
+            setValidationState(null);
+          }
         }}
       />
 
@@ -562,7 +805,6 @@ export default function HtmlCoursePage() {
           validationState={validationState}
         />
       </div>
-
     </div>
   );
 }

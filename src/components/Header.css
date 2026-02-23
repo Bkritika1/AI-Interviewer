@@ -7,6 +7,7 @@
   justify-content: space-between;
   padding: 16px 80px;
   border-bottom: 1px solid #e5e7eb;
+   background-color: #fff ! important;
 }
 
 .logo {
