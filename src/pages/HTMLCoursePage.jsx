@@ -715,39 +715,82 @@ export default function HtmlCoursePage() {
     setXp((prev) => prev + 10);
   };
 
+  // const handleValidate = (code, question) => {
+  //   if (!question) return;
+
+  //   const isValid = validateCode(code, question);
+
+  //   if (isValid) {
+  //     handleCompleteQuestion(activeTopicId, question.id);
+
+  //     const topic = moduleWithProgress.topics.find(
+  //       (t) => t.id === activeTopicId
+  //     );
+
+  //     const currentIndex = topic.questions.findIndex(
+  //       (q) => q.id === question.id
+  //     );
+
+  //     const nextQuestion = topic.questions[currentIndex + 1];
+
+  //     if (nextQuestion) {
+  //       setActiveQuestion(nextQuestion);
+  //     } else {
+  //       setActiveQuestion(null);
+  //     }
+  //   }
+
+  //   setValidationState({
+  //     success: isValid,
+  //     message: isValid
+  //       ? "Correct! 🎉 +10 XP"
+  //       : question.explanation || "Not correct ❌",
+  //   });
+  // };
+
+
   const handleValidate = (code, question) => {
-    if (!question) return;
+  if (!question) return;
 
-    const isValid = validateCode(code, question);
+  const isValid = validateCode(code, question);
 
-    if (isValid) {
-      handleCompleteQuestion(activeTopicId, question.id);
+  if (isValid) {
+    handleCompleteQuestion(activeTopicId, question.id);
 
-      const topic = moduleWithProgress.topics.find(
-        (t) => t.id === activeTopicId
-      );
+    const topicIndex = moduleWithProgress.topics.findIndex(
+      (t) => t.id === activeTopicId
+    );
 
-      const currentIndex = topic.questions.findIndex(
-        (q) => q.id === question.id
-      );
+    const topic = moduleWithProgress.topics[topicIndex];
+    const currentIndex = topic.questions.findIndex(
+      (q) => q.id === question.id
+    );
 
-      const nextQuestion = topic.questions[currentIndex + 1];
+    const nextQuestion = topic.questions[currentIndex + 1];
 
-      if (nextQuestion) {
-        setActiveQuestion(nextQuestion);
+    // 🔥 If next question exists → move to next question
+    if (nextQuestion) {
+      setActiveQuestion(nextQuestion);
+    } else {
+      // 🔥 If topic completed → move to next topic automatically
+      const nextTopic = moduleWithProgress.topics[topicIndex + 1];
+
+      if (nextTopic && !nextTopic.locked) {
+        setActiveTopicId(nextTopic.id);
+        setActiveQuestion(nextTopic.questions[0]);
       } else {
         setActiveQuestion(null);
       }
     }
+  }
 
-    setValidationState({
-      success: isValid,
-      message: isValid
-        ? "Correct! 🎉 +10 XP"
-        : question.explanation || "Not correct ❌",
-    });
-  };
-
+  setValidationState({
+    success: isValid,
+    message: isValid
+      ? "Correct! 🎉 +10 XP"
+      : question.explanation || "Not correct ❌",
+  });
+};
   // ================================
   // 🔥 UI
   // ================================

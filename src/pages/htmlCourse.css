@@ -533,6 +533,8 @@ body{
   background:#0f1124;
   padding:20px;
   color:white;
+  margin-top: 2rem;
+
 }
 
 .timeline{
@@ -656,6 +658,7 @@ body{
   padding: 10px 20px;
   background: #111;
   border-bottom: 1px solid #222;
+  position: absolute;
 }
 
 .progress-info {
