@@ -131,38 +131,118 @@
 // }
 
 
+// export default function LessonContent({
+//   topic,
+//   onCompleteQuestion,
+//   onSelectQuestion
+// }) {
+
+//   if (!topic) return null;
+
+//   const { content } = topic;
+
+//   return (
+//     <div className="lesson-content">
+
+//       <h1>{content.heading}</h1>
+//       <p>{content.description}</p>
+
+//       {topic.questions?.map(q => (
+//         <button
+//           key={q.id}
+//           disabled={q.locked}
+//           onClick={() => {
+//             onSelectQuestion(q);
+//             onCompleteQuestion(topic.id, q.id);
+//           }}
+//           style={{
+//             opacity: q.locked ? 0.4 : 1,
+//             marginTop: "10px"
+//           }}
+//         >
+//           {q.completed ? "✅" : "⬜"} {q.title}
+//         </button>
+//       ))}
+
+//     </div>
+//   );
+// }
+
+import './LessonContent.css';
 export default function LessonContent({
   topic,
-  onCompleteQuestion,
   onSelectQuestion
 }) {
-
   if (!topic) return null;
 
   const { content } = topic;
 
   return (
-    <div className="lesson-content">
+    <div className="lesson-wrapper">
 
-      <h1>{content.heading}</h1>
-      <p>{content.description}</p>
+      {/* 🔥 TOP HEADER ROW */}
+      <div className="lesson-header">
+        <div className="lesson-badge">
+          📖 LESSON DETAILS
+        </div>
 
-      {topic.questions?.map(q => (
-        <button
-          key={q.id}
-          disabled={q.locked}
-          onClick={() => {
-            onSelectQuestion(q);
-            onCompleteQuestion(topic.id, q.id);
-          }}
-          style={{
-            opacity: q.locked ? 0.4 : 1,
-            marginTop: "10px"
-          }}
-        >
-          {q.completed ? "✅" : "⬜"} {q.title}
-        </button>
-      ))}
+        <div className="lesson-progress">
+          <span>Progress</span>
+          <div className="mini-progress-bar">
+            <div className="mini-progress-fill" />
+          </div>
+        </div>
+      </div>
+
+      {/* 🔥 MAIN HEADING */}
+      <h1 className="lesson-title">
+        {content.heading}
+      </h1>
+
+      <p className="lesson-description">
+        {content.description}
+      </p>
+
+      {/* 🔥 QUOTE BOX */}
+      <div className="lesson-quote">
+        “The secret of getting ahead is getting started.
+        Structure your code like you structure your goals —
+        one clear heading at a time.”
+      </div>
+
+      {/* 🔥 TASK REQUIREMENTS */}
+      <div className="task-section">
+        <h3>💡 Task Requirements</h3>
+
+        <div className="task-list">
+          {topic.questions?.map(q => (
+            <div
+              key={q.id}
+              className={`task-item ${q.completed ? "done" : ""}`}
+              onClick={() => !q.locked && onSelectQuestion(q)}
+            >
+              <span className="task-icon">
+                {q.completed ? "✅" : "⬜"}
+              </span>
+              <span>{q.title}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 🔥 CODE SNIPPET CARD */}
+      <div className="code-snippet-card">
+        <div className="snippet-header">
+          <span className="dot red"></span>
+          <span className="dot yellow"></span>
+          <span className="dot green"></span>
+        </div>
+
+        <pre>
+{`<h1>My Awesome Title</h1>
+<h2>The Subtitle</h2>`}
+        </pre>
+      </div>
 
     </div>
   );

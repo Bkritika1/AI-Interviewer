@@ -796,33 +796,87 @@ export default function HtmlCoursePage() {
   // ================================
 
   return (
-    <div className="course-layout">
+    // <div className="course-layout">
 
-      {/* XP */}
-      <div className="xp-badge">🏆 XP: {xp}</div>
+    //   {/* XP */}
+    //   <div className="xp-badge">🏆 XP: {xp}</div>
 
-      {/* GLOBAL PROGRESS BAR */}
-      <div className="global-progress-wrapper">
-        <div className="progress-info">
-          Progress: {completedQuestions} / {totalQuestions} Questions ({globalPercent}%)
+    //   {/* GLOBAL PROGRESS BAR */}
+    //   <div className="global-progress-wrapper">
+    //     <div className="progress-info">
+    //       Progress: {completedQuestions} / {totalQuestions} Questions ({globalPercent}%)
+    //     </div>
+
+    //     <div className="global-progress-bar">
+    //       <div
+    //         className="global-progress-fill"
+    //         style={{ width: `${globalPercent}%` }}
+    //       />
+    //     </div>
+    //   </div>
+
+    //   <CourseSidebar
+    //     module={moduleWithProgress}
+    //     activeTopicId={activeTopicId}
+    //     onSelectTopic={(id) => {
+    //       const topic = moduleWithProgress.topics.find(
+    //         (t) => t.id === id
+    //       );
+
+    //       if (!topic.locked) {
+    //         setActiveTopicId(id);
+    //         setActiveQuestion(null);
+    //         setValidationState(null);
+    //       }
+    //     }}
+    //   />
+
+    //   <LessonContent
+    //     topic={activeTopic}
+    //     onSelectQuestion={(q) => {
+    //       if (!q.locked) {
+    //         setActiveQuestion(q);
+    //         setValidationState(null);
+    //       }
+    //     }}
+    //   />
+
+    //   <div className="editor-area">
+    //     <CodeEditor
+    //       activeQuestion={activeQuestion}
+    //       onValidate={handleValidate}
+    //       validationState={validationState}
+    //     />
+    //   </div>
+    // </div>
+
+  <div className="app-container">
+
+    {/* 🔥 TOP NAVBAR */}
+    <div className="top-navbar">
+      {/* <div className="nav-left">
+        <div className="logo">DevForge <span>IDE</span></div>
+        <div className="nav-links">
+          <span>Courses</span>
+          <span>Workspace</span>
+          <span>Community</span>
         </div>
+      </div> */}
 
-        <div className="global-progress-bar">
-          <div
-            className="global-progress-fill"
-            style={{ width: `${globalPercent}%` }}
-          />
-        </div>
+      <div className="nav-right">
+        <div className="xp-pill">⚡ {xp} XP</div>
+        <div className="profile-circle">👤</div>
       </div>
+    </div>
+
+    {/* 🔥 MAIN 3 COLUMN LAYOUT */}
+    <div className="main-layout">
 
       <CourseSidebar
         module={moduleWithProgress}
         activeTopicId={activeTopicId}
         onSelectTopic={(id) => {
-          const topic = moduleWithProgress.topics.find(
-            (t) => t.id === id
-          );
-
+          const topic = moduleWithProgress.topics.find(t => t.id === id);
           if (!topic.locked) {
             setActiveTopicId(id);
             setActiveQuestion(null);
@@ -841,13 +895,23 @@ export default function HtmlCoursePage() {
         }}
       />
 
-      <div className="editor-area">
-        <CodeEditor
-          activeQuestion={activeQuestion}
-          onValidate={handleValidate}
-          validationState={validationState}
-        />
-      </div>
+      <CodeEditor
+        activeQuestion={activeQuestion}
+        onValidate={handleValidate}
+        validationState={validationState}
+      />
+
     </div>
-  );
+
+    {/* 🔥 BOTTOM STATUS BAR */}
+    <div className="bottom-bar">
+      <span>Connected</span>
+      <span>Auto-save ON</span>
+      <span>Spaces: 4</span>
+      <span>UTF-8</span>
+    </div>
+
+  </div>
+);
+
 }

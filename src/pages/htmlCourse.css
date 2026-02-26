@@ -679,3 +679,122 @@ body{
   background: linear-gradient(90deg, #00f5a0, #00d9f5);
   transition: width 0.4s ease;
 }
+
+/* 🔥 FULL APP */
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #0e0a1f;
+  font-family: 'Inter', sans-serif;
+}
+
+/* 🔥 TOP NAVBAR */
+.top-navbar {
+  height: 60px;
+  background: #140f2d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  color: white;
+}
+
+.logo span {
+  color: #8b5cf6;
+}
+
+.nav-links span {
+  margin-left: 20px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.xp-pill {
+  background: #7c3aed;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-right: 15px;
+}
+
+.profile-circle {
+  width: 35px;
+  height: 35px;
+  background: #2a1f5c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 🔥 MAIN LAYOUT */
+.main-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 260px 1fr 420px;
+}
+
+/* 🔥 SIDEBAR */
+.course-sidebar {
+  background: #120c24;
+  color: white;
+  padding: 25px;
+  border-right: 1px solid #2b204b;
+}
+
+/* 🔥 MIDDLE PANEL */
+.lesson-content {
+  background: #f4f5f9;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* 🔥 EDITOR */
+.editor-wrapper {
+  background: #0f0a25;
+  padding: 20px;
+  border-left: 1px solid #2b204b;
+}
+
+/* 🔥 BOTTOM BAR */
+.bottom-bar {
+  height: 30px;
+  background: linear-gradient(to right, #7c3aed, #5b21b6);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-left: 20px;
+  color: white;
+  font-size: 12px;
+}
+
+.timeline {
+  position: relative;
+  margin-top: 20px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #4c1d95;
+}
+.circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #444;
+  margin-right: 15px;
+}
+
+.circle.completed {
+  background: #22c55e;
+}
+
+.circle.active-circle {
+  background: #8b5cf6;
+  box-shadow: 0 0 10px #8b5cf6;
+}

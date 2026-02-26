@@ -1,0 +1,125 @@
+/* ===============================
+   🔥 MIDDLE PANEL STYLING
+=================================*/
+
+.lesson-wrapper {
+  padding: 60px;
+  background: #f4f5f9;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Header Row */
+.lesson-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.lesson-badge {
+  color: #7c3aed;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.lesson-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6b7280;
+}
+
+.mini-progress-bar {
+  width: 120px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.mini-progress-fill {
+  width: 40%;
+  height: 100%;
+  background: #7c3aed;
+}
+
+/* Title */
+.lesson-title {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+.lesson-description {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #4b5563;
+  max-width: 700px;
+}
+
+/* Quote Box */
+.lesson-quote {
+  margin-top: 30px;
+  background: #ede9fe;
+  border-left: 4px solid #7c3aed;
+  padding: 20px;
+  border-radius: 12px;
+  color: #5b21b6;
+  font-style: italic;
+  max-width: 700px;
+}
+
+/* Task Section */
+.task-section {
+  margin-top: 40px;
+}
+
+.task-section h3 {
+  margin-bottom: 15px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.task-item.done {
+  color: #16a34a;
+}
+
+/* Code Snippet Card */
+.code-snippet-card {
+  margin-top: 40px;
+  background: #0f172a;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 700px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.snippet-header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.red { background: #ef4444; }
+.yellow { background: #f59e0b; }
+.green { background: #22c55e; }
+
+.code-snippet-card pre {
+  color: #f8fafc;
+  font-size: 14px;
+}
