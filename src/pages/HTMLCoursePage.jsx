@@ -863,10 +863,10 @@ export default function HtmlCoursePage() {
         </div>
       </div> */}
 
-      <div className="nav-right">
+      {/* <div className="nav-right">
         <div className="xp-pill">⚡ {xp} XP</div>
         <div className="profile-circle">👤</div>
-      </div>
+      </div> */}
     </div>
 
     {/* 🔥 MAIN 3 COLUMN LAYOUT */}
@@ -903,13 +903,7 @@ export default function HtmlCoursePage() {
 
     </div>
 
-    {/* 🔥 BOTTOM STATUS BAR */}
-    <div className="bottom-bar">
-      <span>Connected</span>
-      <span>Auto-save ON</span>
-      <span>Spaces: 4</span>
-      <span>UTF-8</span>
-    </div>
+   
 
   </div>
 );
